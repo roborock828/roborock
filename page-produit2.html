@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+        header {
+            background-color: #1A2B41; /* Bleu foncé */
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .promo-banner {
+            background-color: #e94e77; /* Rouge moderne */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #1A2B41; /* Bleu foncé */
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group input:focus {
+            border-color: #1A2B41;
+            background-color: #fff;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 5px rgba(26, 43, 65, 0.4);
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #e94e77;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%; /* Pour qu'il prenne toute la largeur */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #d03c65; /* Darker red */
+            transform: translateY(-2px); /* Effet de survol */
+        }
+
+        .separator {
+            margin: 40px 0;
+            border-top: 1px solid #eee;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #1A2B41;
+            color: white;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- تخفيضات رأس السنة -->
+            <div style="
+                background: linear-gradient(45deg, #ff4c4c, #ff8282);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 1rem;
+                font-weight: bold;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                🎉 Nouvelle Année : Profitez des Soldes jusqu'à -60% pour une maison plus propre en 2025 !
+            </div>
+
+    <div class="container">
+<!-- تخفيضات رأس السنة -->
+            <div style="
+                background: linear-gradient(45deg, #00C6FF, #0072FF);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 1rem;
+                font-weight: bold;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                Veuillez renseigner vos informations pour garantir une livraison rapide et précise de votre produit à l'adresse souhaitée.
+            </div>        
+
+        <form action="submit_form.php" method="POST">
+            <div class="form-group">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prénom">
+            </div>
+
+            <div class="form-group">
+                <label for="nom">Nom *</label>
+                <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom">
+            </div>
+
+            <div class="form-group">
+                <label for="rue">Rue *</label>
+                <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
+            </div>
+
+            <div class="form-group">
+                <label for="numero">N°</label>
+                <input type="text" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
+            </div>
+
+            <div class="form-group">
+                <label for="code_postal">Code postal *</label>
+                <input type="text" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
+            </div>
+
+            <div class="form-group">
+                <label for="ville">Ville *</label>
+                <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Entrez votre email">
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Numéro de téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="Entrez votre numéro de téléphone">
+            </div>
+
+            <style>
+    input[type="submit"] {
+        background-color: pink; /* Couleur de fond rose */
+        color: white; /* Couleur du texte en blanc */
+        border: none; /* Enlever la bordure si tu veux */
+        padding: 10px 20px; /* Ajuster la taille du bouton */
+        cursor: pointer; /* Changer le curseur au survol */
+        border-radius: 5px; /* Ajouter des coins arrondis */
+    }
+
+    input[type="submit"]:hover {
+        background-color: hotpink; /* Couleur de fond plus foncée au survol */
+    }
+</style>
+
+<div class="form-group">
+    <input type="submit" value="Finaliser votre panier">
+</div>
+        </form>
+    </div>
+
+    <div class="separator"></div>
+
+    <footer>
+        <p>&copy; 2025 Roborock. Tous droits réservés. <a href="#">Politique de confidentialité</a> | <a href="#">Conditions d'utilisation</a></p>
+    </footer>
+
+</body>
+</html>
