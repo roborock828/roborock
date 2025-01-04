@@ -21,7 +21,7 @@
 
         /* رأس الصفحة */
         header {
-            background-color: #1A2B41; /* لون أزرق داكن */
+            background-color: #1A2B41;
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -33,58 +33,7 @@
             text-transform: uppercase;
         }
 
-        /* إعلان العروض */
-        .promo-banner {
-            background-color: #e94e77; /* لون أحمر عصري */
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* بطاقة المنتج */
-        .product-card {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .product-card img {
-            width: 120px;
-            height: auto;
-            border-radius: 8px;
-            margin-right: 15px;
-        }
-        .product-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .product-info h3 {
-            font-size: 1.2rem;
-            color: #1A2B41;
-            margin-bottom: 5px;
-        }
-        .product-info p {
-            font-size: 1rem;
-            color: #e94e77;
-            font-weight: bold;
-        }
-        .product-info .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.9rem;
-            margin-left: 10px;
-        }
-
-        /* تصميم الحاوية */
+        /* الحاوية */
         .container {
             width: 90%;
             max-width: 700px;
@@ -141,7 +90,6 @@
             background-color: #d03c65;
         }
 
-        /* التذييل */
         footer {
             text-align: center;
             background-color: #1A2B41;
@@ -166,21 +114,6 @@
         <h1>Formulaire de Commande</h1>
     </header>
 
-    <!-- إعلان العروض -->
-    <div class="promo-banner">
-        🎉 Nouvelle Année : Profitez des Soldes jusqu'à -60% pour une maison plus propre en 2025 !
-    </div>
-
-    <!-- بطاقة المنتج -->
-    <div class="product-card">
-        <img src="S8MaxVUltra_A_Fr.webp" alt="S8 MaxV Ultra">
-        <div class="product-info">
-            <h3>S8 MaxV Ultra</h3>
-            <p>799€ <span class="original-price">1499€</span></p>
-        </div>
-    </div>
-
-    <!-- الحاوية -->
     <div class="container">
         <h2>Remplissez vos informations</h2>
         <form action="submit_form.php" method="POST">
@@ -226,7 +159,6 @@
         </form>
     </div>
 
-    <!-- التذييل -->
     <footer>
         &copy; 2025 Roborock. Tous droits réservés. <a href="#">Politique de confidentialité</a> | <a href="#">Conditions d'utilisation</a>
     </footer>
