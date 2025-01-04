@@ -92,6 +92,20 @@
             Veuillez renseigner vos informations pour garantir une livraison rapide et précise de votre produit à l'adresse souhaitée.
         </div>        
 
+        <div class="container">
+<!-- تخفيضات رأس السنة -->
+            <div style="
+                background: linear-gradient(45deg, #00C6FF, #0072FF);
+                color: white;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 1rem;
+                font-weight: bold;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                Veuillez renseigner vos informations pour garantir une livraison rapide et précise de votre produit à l'adresse souhaitée.
+            </div>        
+
         <form action="submit_form.php" method="POST">
             <div class="form-group">
                 <label for="prenom">Prénom *</label>
@@ -133,11 +147,28 @@
                 <input type="tel" id="telephone" name="telephone" placeholder="Entrez votre numéro de téléphone">
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Finaliser votre panier">
-            </div>
+            <style>
+    input[type="submit"] {
+        background-color: pink; /* Couleur de fond rose */
+        color: white; /* Couleur du texte en blanc */
+        border: none; /* Enlever la bordure si tu veux */
+        padding: 10px 20px; /* Ajuster la taille du bouton */
+        cursor: pointer; /* Changer le curseur au survol */
+        border-radius: 5px; /* Ajouter des coins arrondis */
+    }
+
+    input[type="submit"]:hover {
+        background-color: hotpink; /* Couleur de fond plus foncée au survol */
+    }
+</style>
+
+<div class="form-group">
+    <input type="submit" value="Finaliser votre panier">
+</div>
         </form>
     </div>
+
+    <div class="separator"></div>
 
     <footer>
         <p>&copy; 2025 Roborock. Tous droits réservés. <a href="#">Politique de confidentialité</a> | <a href="#">Conditions d'utilisation</a></p>
