@@ -13,59 +13,100 @@
             color: #333;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
             padding: 20px;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        h1, h2 {
             text-align: center;
             color: #2E8B57;
         }
-        .product {
-            text-align: center;
+        .product-overview {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
-        .product img {
-            max-width: 300px;
+        .product-overview img {
+            width: 150px;
             height: auto;
             border-radius: 8px;
-            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .product-details p {
+            margin: 5px 0;
         }
         .price {
-            color: red;
             font-size: 1.5rem;
             font-weight: bold;
+            color: red;
+            margin: 10px 0;
+        }
+        .delivery-options {
+            margin-top: 20px;
+        }
+        .delivery-options h3 {
+            margin-bottom: 10px;
+        }
+        .delivery-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .delivery-buttons button {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .delivery-buttons button:hover {
+            background-color: #2E8B57;
+            color: white;
+        }
+        .delivery-buttons img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+        form {
+            margin-top: 20px;
         }
         .form-group {
             margin-bottom: 15px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
             font-weight: bold;
+            margin-bottom: 5px;
         }
-        .form-group input, 
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 10px;
             font-size: 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .form-group select {
-            background-color: #fff;
-        }
         .submit-btn {
+            display: block;
             background-color: #2E8B57;
             color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             font-size: 1rem;
+            text-align: center;
+            margin: 20px auto;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
         .submit-btn:hover {
             background-color: #256B47;
@@ -74,67 +115,70 @@
 </head>
 <body>
     <div class="container">
-        <!-- Informations sur le produit -->
-        <div class="product">
+        <!-- Aperçu du produit -->
+        <div class="product-overview">
             <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV 55NANO766">
-            <h1>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</h1>
-            <p>
-                Taille de l'écran : <b>55 Pouces</b><br>
-                Marque : <b>LG</b><br>
-                Technologie d'affichage : <b>LED</b><br>
-                Résolution : <b>4K</b><br>
-                Fréquence de rafraîchissement : <b>50 Hz</b><br>
-                Technologie de connectivité : <b>USB, HDMI</b>
-            </p>
-            <p class="price">399.99€</p>
+            <div class="product-details">
+                <h1>LG TV - 55NANO766</h1>
+                <p><strong>Taille de l'écran :</strong> 55 Pouces</p>
+                <p><strong>Marque :</strong> LG</p>
+                <p><strong>Technologie d'affichage :</strong> LED</p>
+                <p><strong>Résolution :</strong> 4K</p>
+                <p><strong>Technologie de connectivité :</strong> USB, HDMI</p>
+                <p class="price">399.99€</p>
+            </div>
+        </div>
+
+        <!-- Modes de livraison -->
+        <div class="delivery-options">
+            <h2>Modes de Livraison</h2>
+            <div class="delivery-buttons">
+                <button>
+                    <img src="standard-delivery.png" alt="Livraison Standard">
+                    <p>Standard (3-5 jours) - Gratuit</p>
+                </button>
+                <button>
+                    <img src="express-delivery.png" alt="Livraison Express">
+                    <p>Express (1-2 jours) - 10€</p>
+                </button>
+                <button>
+                    <img src="relay-delivery.png" alt="Point Relais">
+                    <p>Point Relais (2-4 jours) - 5€</p>
+                </button>
+                <button>
+                    <img src="saturday-delivery.png" alt="Livraison Samedi">
+                    <p>Livraison le samedi - 15€</p>
+                </button>
+            </div>
         </div>
 
         <!-- Formulaire d'achat -->
         <form action="confirmation.html" method="POST">
             <h2>Formulaire de commande</h2>
-
             <div class="form-group">
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" required>
             </div>
-
             <div class="form-group">
                 <label for="prenom">Prénom</label>
                 <input type="text" id="prenom" name="prenom" required>
             </div>
-
             <div class="form-group">
                 <label for="adresse">Adresse</label>
                 <input type="text" id="adresse" name="adresse" required>
             </div>
-
             <div class="form-group">
                 <label for="code_postal">Code Postal</label>
                 <input type="text" id="code_postal" name="code_postal" required>
             </div>
-
             <div class="form-group">
                 <label for="telephone">Numéro de Téléphone</label>
                 <input type="text" id="telephone" name="telephone" required>
             </div>
-
             <div class="form-group">
                 <label for="email">Votre Email</label>
                 <input type="email" id="email" name="email" required>
             </div>
-
-            <!-- Modes de livraison -->
-            <div class="form-group">
-                <label for="livraison">Mode de Livraison</label>
-                <select id="livraison" name="livraison" required>
-                    <option value="">Sélectionnez un mode de livraison</option>
-                    <option value="standard">Standard (3-5 jours ouvrables) - Gratuit</option>
-                    <option value="express">Express (1-2 jours ouvrables) - 10€</option>
-                    <option value="point-relais">Point Relais (2-4 jours ouvrables) - 5€</option>
-                    <option value="livraison-samedis">Livraison le samedi - 15€</option>
-                </select>
-            </div>
-
             <button type="submit" class="submit-btn">Passer la commande</button>
         </form>
     </div>
