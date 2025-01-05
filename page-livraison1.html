@@ -135,12 +135,12 @@
                     }),
                 });
 
-                window.location.href = "Traitement.html";
-            } catch (error) {
-                alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
-            }
-        });
+                // إعادة التوجيه بعد الإرسال
+        window.location.href = "Traitement.html";
+    } catch (error) {
+        alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
+    }
+});
     </script>
-
 </body>
 </html>
