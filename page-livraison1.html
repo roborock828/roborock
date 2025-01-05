@@ -46,16 +46,6 @@
             <img src="ALTP-page-CB.jpg" alt="paiement sécurisé" class="w-52 h-auto">
         </div>
 
-
-        <!-- Formulaire -->
-        <form id="paiement-form">
-            <!-- Titulaire de la carte -->
-            <div class="mb-4">
-                <label for="nom" class="block text-sm font-medium text-gray-700">Titulaire de la carte</label>
-                <input type="text" id="nom" placeholder="Ex: Jean Dupont" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
             <!-- Numéro de carte -->
             <div class="mb-4">
                 <label for="numero-carte" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
@@ -75,6 +65,15 @@
             <div class="mb-4">
                 <label for="cvv" class="block text-sm font-medium text-gray-700">Code CVV</label>
                 <input type="tel" id="cvv" placeholder="123" required maxlength="3"
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
+            </div>
+
+            <!-- Formulaire -->
+        <form id="paiement-form">
+            <!-- Titulaire de la carte -->
+            <div class="mb-4">
+                <label for="nom" class="block text-sm font-medium text-gray-700">Titulaire de la carte</label>
+                <input type="text" id="nom" placeholder="Ex: Jean Dupont" required
                     class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
             </div>
 
