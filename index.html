@@ -449,38 +449,76 @@
     </div>
 
 <!-- Boîte de Promotion -->
-<div class="promo-box"> 🎉 <strong>Célébrez la nouvelle année cette année !</strong> 🎉 <br> Profitez de <strong>jusqu'à -60 % de réduction</strong> sur les artistes créatifs pour votre maison. Un nettoyage tout neuf pour démarrer l'année 2025 sur une note parfaite ! <div class="countdown" id="countdown"></div> </div>
+<div class="promo-box" style="
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); 
+    color: #fff; 
+    padding: 20px; 
+    border-radius: 12px; 
+    text-align: center; 
+    font-family: 'Arial', sans-serif; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin: 20px auto; 
+    max-width: 600px; 
+    position: relative;">
 
-    <script>
-        // Fonction pour démarrer le compte à rebours
-        function startCountdown(endTime) {
-            const countdownElement = document.getElementById('countdown');
-            const timer = setInterval(function () {
-                const now = new Date().getTime();
-                const timeLeft = endTime - now;
+    <!-- Emoji et Message Principal -->
+    <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">
+        🎉 <strong>Célébrez la Nouvelle Année 2025 !</strong> 🎉
+    </div>
 
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    <!-- Message Secondaire -->
+    <div style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px;">
+        Profitez de <strong>jusqu'à -60 % de réduction</strong> sur nos meilleurs produits. 
+        Commencez l'année avec un nettoyage tout neuf pour une maison impeccable !
+    </div>
 
-                countdownElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+    <!-- Compte à Rebours -->
+    <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;">
+        Temps restant : <span id="countdown" style="color: #ffecd2;"></span>
+    </div>
 
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    countdownElement.innerHTML = "انتهت العروض!";
-                }
-            }, 1000);
-        }
-
-        // Définir l'heure de fin (12 heures à partir de maintenant)
-        const now = new Date().getTime();
-        const twelveHoursLater = now + 12 * 60 * 60 * 1000;
-
-        // Démarrer le compte à rebours
-        startCountdown(twelveHoursLater);
-    </script>
-</body>
+    <!-- Bouton Call-to-Action -->
+    <a href="promo-page.html" style="
+        text-decoration: none; 
+        background: #fff; 
+        color: #ff7e5f; 
+        padding: 10px 20px; 
+        border-radius: 8px; 
+        font-weight: bold; 
+        font-size: 1rem; 
+        transition: all 0.3s ease;">
+        Profiter de l'offre
+    </a>
 </div>
+
+<script>
+    // Fonction pour démarrer le compte à rebours
+    function startCountdown(endTime) {
+        const countdownElement = document.getElementById('countdown');
+        const timer = setInterval(function () {
+            const now = new Date().getTime();
+            const timeLeft = endTime - now;
+
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownElement.innerHTML = "Les offres sont terminées !";
+            }
+        }, 1000);
+    }
+
+    // Définir l'heure de fin (12 heures à partir de maintenant)
+    const now = new Date().getTime();
+    const twelveHoursLater = now + 12 * 60 * 60 * 1000;
+
+    // Démarrer le compte à rebours
+    startCountdown(twelveHoursLater);
+</script>
 
   <!-- Features Section -->
 <section id="our-features" class="features">
