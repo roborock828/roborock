@@ -3,120 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Produit - Roborock</title>
+    <title>Formulaire de Livraison</title>
     <style>
         /* Style global */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background-color: #f8f8f8;
             color: #333;
         }
 
-        /* Header */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        header img {
-            height: 40px;
-        }
-
-        header h1 {
-            font-size: 1.2rem;
-            color: #555;
-            margin: 0;
-        }
-
-        /* Conteneur principal */
         .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
+            max-width: 800px;
+            margin: 40px auto;
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1, h2 {
+        h1 {
             text-align: center;
-            color: #444;
-        }
-
-        /* Aperçu du produit */
-        .product-overview {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .product-overview img {
-            width: 150px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-details {
-            flex-grow: 1;
-        }
-
-        .product-details p {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            font-weight: bold;
             color: #D32F2F;
-            margin: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 10px;
         }
 
         /* Formulaire */
         form {
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #444;
+            display: none; /* Cacher les labels */
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input {
             width: 100%;
-            padding: 10px;
-            font-size: 1rem;
+            padding: 12px 15px 12px 40px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
-        textarea {
-            resize: vertical;
+        .form-group i {
+            position: absolute;
+            left: 10px;
+            color: #888;
+            font-size: 1.2rem;
         }
 
+        .form-group input:focus {
+            outline: none;
+            border-color: #D32F2F;
+        }
+
+        /* Modes de livraison */
+        .delivery-section {
+            margin-top: 20px;
+        }
+
+        .delivery-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .delivery-option {
+            text-align: center;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .delivery-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .delivery-option img {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .delivery-option.selected {
+            border: 2px solid #D32F2F;
+        }
+
+        .delivery-option p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Bouton de validation */
         .submit-btn {
-            display: block;
+            width: 100%;
             background-color: #D32F2F;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.2rem;
             text-align: center;
-            margin: 20px auto;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -125,138 +131,83 @@
             background-color: #B71C1C;
         }
 
-        /* Modes de livraison */
-        .delivery-section {
-            margin-top: 30px;
-        }
-
-        .delivery-options {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .delivery-option {
-            text-align: center;
-            width: 120px;
-        }
-
-        .delivery-option img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 10px;
-        }
-
-        .delivery-option button {
-            background-color: #555;
-            color: #fff;
-            border: none;
-            padding: 8px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .delivery-option button:hover {
-            background-color: #333;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #f1f1f1;
-            color: #555;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
+        /* Responsive */
+        @media (max-width: 600px) {
+            .form-group input {
+                padding: 12px 15px 12px 35px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <img src="roborock.png" alt="Logo Roborock">
-        <h1>Roborock</h1>
-    </header>
-
-    <!-- Contenu principal -->
     <div class="container">
-        <!-- Aperçu du produit -->
-        <div class="product-overview">
-            <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV 55NANO766">
-            <div class="product-details">
-                <h1>LG TV - 55NANO766</h1>
-                <p><strong>Taille de l'écran :</strong> 55 Pouces</p>
-                <p><strong>Marque :</strong> LG</p>
-                <p><strong>Technologie d'affichage :</strong> LED</p>
-                <p><strong>Résolution :</strong> 4K</p>
-                <p><strong>Technologie de connectivité :</strong> USB, HDMI</p>
-                <p class="price">399.99€</p>
-            </div>
-        </div>
+        <h1>Formulaire de Livraison</h1>
 
-        <!-- Formulaire de commande -->
         <form action="confirmation.html" method="POST">
-            <h2>Formulaire de commande</h2>
+            <h2>Informations Personnelles</h2>
             <div class="form-group">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" required>
+                <i class="fas fa-user"></i>
+                <input type="text" name="nom" placeholder="Nom" required>
             </div>
             <div class="form-group">
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" required>
+                <i class="fas fa-user"></i>
+                <input type="text" name="prenom" placeholder="Prénom" required>
             </div>
             <div class="form-group">
-                <label for="adresse">Adresse</label>
-                <input type="text" id="adresse" name="adresse" required>
+                <i class="fas fa-home"></i>
+                <input type="text" name="adresse" placeholder="Adresse" required>
             </div>
             <div class="form-group">
-                <label for="ville">Ville</label>
-                <input type="text" id="ville" name="ville" required>
+                <i class="fas fa-city"></i>
+                <input type="text" name="ville" placeholder="Ville" required>
             </div>
             <div class="form-group">
-                <label for="code_postal">Code Postal</label>
-                <input type="text" id="code_postal" name="code_postal" required>
+                <i class="fas fa-envelope"></i>
+                <input type="text" name="code_postal" placeholder="Code Postal" required>
             </div>
             <div class="form-group">
-                <label for="telephone">Numéro de Téléphone</label>
-                <input type="text" id="telephone" name="telephone" required>
+                <i class="fas fa-phone"></i>
+                <input type="tel" name="telephone" placeholder="Téléphone" required>
             </div>
             <div class="form-group">
-                <label for="email">Votre Email</label>
-                <input type="email" id="email" name="email" required>
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required>
             </div>
-            <button type="submit" class="submit-btn">Passer la commande</button>
-        </form>
 
-        <!-- Modes de livraison -->
-        <div class="delivery-section">
-            <h2>Modes de livraison</h2>
+            <h2>Modes de Livraison</h2>
             <div class="delivery-options">
-                <div class="delivery-option">
+                <div class="delivery-option" onclick="selectDelivery(this)">
                     <img src="express.png" alt="Express">
-                    <button>Express</button>
+                    <p>Livraison Express</p>
                 </div>
-                <div class="delivery-option">
+                <div class="delivery-option" onclick="selectDelivery(this)">
                     <img src="standard.png" alt="Standard">
-                    <button>Standard</button>
+                    <p>Livraison Standard</p>
                 </div>
-                <div class="delivery-option">
-                    <img src="pickup.png" alt="Point retrait">
-                    <button>Point retrait</button>
+                <div class="delivery-option" onclick="selectDelivery(this)">
+                    <img src="pickup.png" alt="Point Retrait">
+                    <p>Point Retrait</p>
                 </div>
-                <div class="delivery-option">
+                <div class="delivery-option" onclick="selectDelivery(this)">
                     <img src="international.png" alt="International">
-                    <button>International</button>
+                    <p>Livraison Internationale</p>
                 </div>
             </div>
-        </div>
+
+            <button type="submit" class="submit-btn">Valider ma Commande</button>
+        </form>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2025 Roborock. Tous droits réservés.
-    </footer>
+    <script>
+        function selectDelivery(element) {
+            // Supprime la classe 'selected' de toutes les options
+            document.querySelectorAll('.delivery-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Ajoute la classe 'selected' à l'élément cliqué
+            element.classList.add('selected');
+        }
+    </script>
 </body>
 </html>
