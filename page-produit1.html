@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commande - LG TV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #b71c1c;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -217,6 +231,151 @@
         footer p {
             font-size: 0.8rem;
         }
+        header img {
+            height: 40px;
+        }
+        header h1 {
+            color: white;
+            margin-left: 10px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .product-info {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .product-info img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .product-info h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .product-info p {
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .product-info .price {
+            font-size: 1.4rem;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        /* Barre de progression */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .progress-bar .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .progress-bar .step span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background: #ccc;
+            color: white;
+            border-radius: 50%;
+            margin: auto;
+            line-height: 30px;
+        }
+        .progress-bar .step.active span {
+            background: #b71c1c;
+        }
+        .progress-bar .step::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #ccc;
+            z-index: -1;
+        }
+        .progress-bar .step:last-child::after {
+            display: none;
+        }
+        .progress-bar .step.active::after {
+            background: #b71c1c;
+        }
+
+        /* Formulaire */
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-container label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background: #b71c1c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background: #a51a1a;
+        }
+
+        /* Section FAQ */
+        .faq {
+            margin-top: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .faq h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #b71c1c;
+        }
+        .faq p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* Badges de confiance */
+        .trust-badges {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 10px 0;
+        }
+        .trust-badges div {
+            text-align: center;
+        }
+        .trust-badges img {
+            width: 50px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -230,79 +389,85 @@
         </ul>
     </div>
 
-    <!-- Progress Bar -->
-    <div class="progress-bar">
-        <div class="step completed">
-            <span>1</span>
-            <p>Produit</p>
+    <div class="container">
+        <!-- Information du produit -->
+        <div class="product-info">
+            <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV">
+            <h3>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</h3>
+            <p>Taille de l'écran : 55 Pouces</p>
+            <p>Marque : LG</p>
+            <p>Technologie d'affichage : LED</p>
+            <p>Résolution : 4K</p>
+            <p class="price">399.99€</p>
         </div>
-        <div class="step">
-            <span>2</span>
-            <p>Informations</p>
+
+        <!-- Barre de progression -->
+        <div class="progress-bar">
+            <div class="step active">
+                <span>1</span>
+                <p>Produit</p>
+            </div>
+            <div class="step active">
+                <span>2</span>
+                <p>Informations</p>
+            </div>
+            <div class="step">
+                <span>3</span>
+                <p>Confirmation</p>
+            </div>
         </div>
-        <div class="step">
-            <span>3</span>
-            <p>Livraison</p>
+
+        <!-- Formulaire -->
+        <div class="form-container">
+            <h2>Informations de Livraison</h2>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" name="adresse" required>
+
+            <label for="code-postal">Code Postal :</label>
+            <input type="text" id="code-postal" name="code-postal" required pattern="\d{5}" title="Code postal invalide">
+
+            <label for="telephone">Numéro de Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required pattern="\d{10}" title="Numéro de téléphone invalide">
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Confirmer la Commande</button>
         </div>
-        <div class="step">
-            <span>4</span>
-            <p>Confirmation</p>
+
+        <!-- FAQ -->
+        <div class="faq">
+            <h3>Questions Fréquemment Posées</h3>
+            <p><strong>Est-il possible de retourner le produit ?</strong> Oui, les retours sont possibles sous 14 jours.</p>
+            <p><strong>Quels sont les délais de livraison ?</strong> Livraison sous 3 à 5 jours ouvrables en France.</p>
+            <p><strong>Puis-je payer en plusieurs fois ?</strong> Oui, des options de paiement en plusieurs fois sont disponibles.</p>
+        </div>
+
+        <!-- Badges de confiance -->
+        <div class="trust-badges">
+            <div>
+                <img src="secure_payment.png" alt="Paiement Sécurisé">
+                <p>Paiement Sécurisé</p>
+            </div>
+            <div>
+                <img src="satisfaction_guarantee.png" alt="Garantie de Satisfaction">
+                <p>Garantie Satisfaction</p>
+            </div>
+            <div>
+                <img src="fast_shipping.png" alt="Expédition Rapide">
+                <p>Expédition Rapide</p>
+            </div>
         </div>
     </div>
-
-    <!-- Form Section -->
-    <div class="form-container">
-        <h2>Formulaire de Livraison</h2>
-        <form>
-            <div class="form-group">
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" placeholder="Entrez votre nom" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Téléphone :</label>
-                <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78" required pattern="[0-9]{10}">
-            </div>
-
-            <div class="form-group">
-                <label for="address">Adresse :</label>
-                <input type="text" id="address" name="address" placeholder="Entrez votre adresse" required>
-            </div>
-
-            <div class="form-group">
-                <label for="zipcode">Code Postal :</label>
-                <input type="text" id="zipcode" name="zipcode" placeholder="75001" required pattern="[0-9]{5}">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" placeholder="example@domain.com" required>
-            </div>
-
-            <div class="form-group">
-                <button type="submit">Soumettre</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- FAQ Section -->
-<div class="faq" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px auto; max-width: 800px;">
-    <h3 style="text-align: center; color: #2c3e50;">Questions Fréquemment Posées</h3>
-    <div style="margin-bottom: 10px;">
-        <h4 style="color: #e74c3c;">1. Est-il possible de retourner le produit ?</h4>
-        <p style="color: #7f8c8d;">Oui, il est possible de retourner le produit sous 30 jours avec un remboursement intégral.</p>
-    </div>
-    <div style="margin-bottom: 10px;">
-        <h4 style="color: #e74c3c;">2. Quels modes de paiement sont acceptés ?</h4>
-        <p style="color: #7f8c8d;">Nous acceptons les cartes bancaires, PayPal, et le paiement en 4 fois sans frais.</p>
-    </div>
-    <div style="margin-bottom: 10px;">
-        <h4 style="color: #e74c3c;">3. Combien de temps faut-il pour la livraison ?</h4>
-        <p style="color: #7f8c8d;">La livraison prend généralement 2 à 5 jours ouvrables en France.</p>
-    </div>
-</div>
-
-<!-- Footer -->
+</body>
+</html>
+        <!-- Footer -->
 <footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
         <!-- Colonne 1 -->
