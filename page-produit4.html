@@ -3,221 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Contact</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>Page Produit - Melitta Barista TS Smart</title>
     <style>
-        /* تنسيقات عامة */
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #f9f9f9;
         }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f7fc;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* رأس الصفحة */
-        header {
-            background-color: #1A2B41; /* لون أزرق داكن */
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        /* إعلان العروض */
-        .promo-banner {
-            background-color: #e94e77; /* لون أحمر عصري */
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* بطاقة المنتج */
-        .product-card {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .product-card img {
-            width: 120px;
-            height: auto;
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
             border-radius: 8px;
-            margin-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .product-info {
-            display: flex;
-            flex-direction: column;
+            text-align: center;
+        }
+        .product-info img {
+            width: 80%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
         .product-info h3 {
-            font-size: 1.2rem;
-            color: #1A2B41;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
         }
         .product-info p {
+            color: #555;
             font-size: 1rem;
-            color: #e94e77;
-            font-weight: bold;
+            margin: 5px 0;
         }
-        .product-info .original-price {
+        .price {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: red;
+        }
+        .old-price {
+            font-size: 1.2rem;
             text-decoration: line-through;
             color: #999;
-            font-size: 0.9rem;
-            margin-left: 10px;
-        }
-
-        /* تصميم الحاوية */
-        .container {
-            width: 90%;
-            max-width: 700px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            font-size: 1.5rem;
-            color: #1A2B41;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* الحقول */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 5px;
-            color: #666;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            transition: 0.3s;
-        }
-        .form-group input:focus {
-            border-color: #1A2B41;
-            background-color: white;
-            outline: none;
-        }
-        .form-group input[type="submit"] {
-            background-color: #e94e77;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .form-group input[type="submit"]:hover {
-            background-color: #d03c65;
-        }
-
-        /* التذييل */
-        footer {
-            text-align: center;
-            background-color: #1A2B41;
-            color: white;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-
-    <!-- رأس الصفحة -->
-    <header>
-        <h1>Formulaire de Commande</h1>
-    </header>
-
-    <!-- إعلان العروض -->
-    <div class="promo-banner">
-        🎉 Nouvelle Année : Profitez des Soldes jusqu'à -60% pour une maison plus propre en 2025 !
-    </div>
-
-    <!-- بطاقة المنتج -->
-    <div class="product-card">
-        <img src="aspirateur-laveur-roborock-flexi-lite_600x600.webp" alt="Aspirateur laveur Roborock Flexi Lite">
+    <div class="container">
+        <!-- Information du produit -->
         <div class="product-info">
-            <h3>Aspirateur laveur Roborock Flexi Lite</h3>
-            <p>249€ <span class="original-price">399€</span></p>
+            <img src="71+NzbI3cDL._AC_SX569_.jpg" alt="Melitta Barista TS Smart Noire">
+            <h3>Melitta Barista TS Smart Noire, Machine à Café à Grain</h3>
+            <p>Marque : Melitta</p>
+            <p>Couleur : Noir</p>
+            <p>Dimensions : 25,9P x 46,7l x 37,2H cm</p>
+            <p>Caractéristiques spéciales : 15 bars, poids 11.28 kg</p>
+            <p>Type : Machine à espresso avec broyeur intégré</p>
+            <p>Usages spécifiques : Filtre réutilisable, programmable, mousseur à lait</p>
+            <p>Finition : Acier inoxydable</p>
+            <p>Note : 4.8 ★★★★★ (982 avis)</p>
+            <p>
+                <span class="old-price">1099.99€</span>
+                <span class="price">519.99€</span>
+            </p>
         </div>
     </div>
-
-    <!-- الحاوية -->
-<div class="container">
-    <h2>Remplissez vos informations</h2>
-    <form action="page-livraison4.html" method="GET">
-        <div class="form-group">
-            <label for="prenom">Prénom *</label>
-            <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prénom">
-        </div>
-        <div class="form-group">
-            <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom">
-        </div>
-        <div class="form-group">
-            <label for="rue">Rue *</label>
-            <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
-        </div>
-        <div class="form-group">
-            <label for="numero">N°</label>
-            <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
-        </div>
-        <div class="form-group">
-            <label for="code_postal">Code postal *</label>
-            <input type="tel" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
-        </div>
-        <div class="form-group">
-            <label for="ville">Ville *</label>
-            <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Finaliser votre panier">
-        </div>
-    </form>
-</div>
-
-    <!-- التذييل -->
-    <footer>
-        &copy; 2025 Roborock. Tous droits réservés. <a href="#">Politique de confidentialité</a> | <a href="#">Conditions d'utilisation</a>
-    </footer>
-
 </body>
 </html>
