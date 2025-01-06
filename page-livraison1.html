@@ -7,71 +7,71 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: #ffffff;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
             text-align: center;
             color: #c70000;
             margin-bottom: 30px;
+            font-size: 1.8rem;
         }
 
         /* Barre de progression */
-        .progress-bar {
+        .progress-container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             margin-bottom: 40px;
             position: relative;
         }
 
-        .progress-bar::before {
+        .progress-container::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 10%;
             right: 10%;
-            height: 4px;
+            height: 3px;
             background-color: #ddd;
             z-index: 1;
+            transform: translateY(-50%);
         }
 
         .step {
-            text-align: center;
             position: relative;
-            flex: 1;
+            text-align: center;
             z-index: 2;
         }
 
         .step span {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
             border-radius: 50%;
             background-color: #ddd;
-            color: #fff;
+            color: white;
             font-weight: bold;
-            font-size: 1em;
+            font-size: 0.9rem;
         }
 
         .step p {
-            margin-top: 5px;
-            font-size: 14px;
+            margin-top: 10px;
+            font-size: 0.85rem;
             color: #666;
-            font-weight: bold;
         }
 
         .step.active span {
@@ -82,15 +82,16 @@
             color: #c70000;
         }
 
-        .step + .step::before {
+        .step.active + .step::before {
             content: '';
             position: absolute;
             top: 50%;
             left: -50%;
             width: 100%;
-            height: 4px;
+            height: 3px;
             background-color: #c70000;
             z-index: 0;
+            transform: translateY(-50%);
         }
 
         /* Formulaire */
@@ -100,9 +101,9 @@
 
         .form-group label {
             font-weight: bold;
-            margin-bottom: 10px;
             color: #333;
             display: block;
+            margin-bottom: 5px;
         }
 
         .form-group input, .form-group select {
@@ -111,6 +112,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            box-sizing: border-box;
         }
 
         .form-group input:focus, .form-group select:focus {
@@ -141,6 +143,10 @@
             gap: 15px;
         }
 
+        .card-info {
+            flex: 1;
+        }
+
         /* Icônes de paiement */
         .payment-icons {
             text-align: center;
@@ -148,15 +154,21 @@
         }
 
         .payment-icons img {
-            width: 50px;
-            margin: 0 10px;
+            width: 40px;
+            margin: 0 5px;
+        }
+
+        @media (max-width: 768px) {
+            .credit-card-info {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Barre de progression -->
-        <div class="progress-bar">
+        <div class="progress-container">
             <div class="step active">
                 <span>1</span>
                 <p>Produit</p>
@@ -217,7 +229,6 @@
                 <input type="text" id="cvv" name="cvv" placeholder="Entrez le CVV" required>
             </div>
 
-            <!-- Nom et bouton de paiement -->
             <div class="form-group">
                 <label for="billing-name">Nom sur la carte</label>
                 <input type="text" id="billing-name" name="billing-name" placeholder="Nom sur la carte" required>
@@ -228,7 +239,7 @@
             </div>
         </form>
 
-        <!-- Images des cartes bancaires -->
+        <!-- Icônes des cartes bancaires -->
         <div class="payment-icons">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_2021.svg" alt="Visa">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="MasterCard">
