@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de Paiement</title>
+    <title>Page de Paiement - LG TV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,26 +14,32 @@
         }
 
         .container {
-            max-width: 800px;
-            margin: 30px auto;
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
+        h2 {
+            text-align: center;
+            color: #c70000;
+            margin-bottom: 20px;
+        }
+
+        /* Barre de progression */
         .progress-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding: 0 10px;
         }
 
         .progress-bar .step {
             text-align: center;
             position: relative;
-            width: 100%;
+            flex: 1;
         }
 
         .progress-bar .step span {
@@ -75,41 +82,61 @@
             background-color: #c70000;
         }
 
-        .payment-form {
-            margin-top: 20px;
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        .payment-form label {
-            display: block;
-            margin-bottom: 5px;
+        .form-group label {
             font-weight: bold;
-            color: #333;
+            margin-bottom: 5px;
+            color: #555;
         }
 
-        .payment-form input {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 5px;
         }
 
-        .payment-form button {
-            display: block;
+        .form-group input:focus, .form-group select:focus {
+            border-color: #c70000;
+        }
+
+        .form-group button {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             background-color: #c70000;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-weight: bold;
         }
 
-        .payment-form button:hover {
-            background-color: #a00000;
+        .form-group button:hover {
+            background-color: #a50000;
+        }
+
+        .credit-card-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .payment-icons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .payment-icons i {
+            font-size: 2rem;
+            margin: 0 10px;
+            color: #333;
+        }
+
+        .payment-icons i:hover {
+            color: #c70000;
         }
     </style>
 </head>
@@ -128,29 +155,73 @@
             </div>
             <div class="step active">
                 <span>3</span>
-                <p>Confirmation</p>
+                <p>Paiement</p>
             </div>
         </div>
 
-        <h2>Page de Paiement</h2>
-        <p>Veuillez remplir vos informations de paiement ci-dessous :</p>
+        <h2>Informations de Paiement</h2>
 
-        <!-- Formulaire de paiement -->
-        <form class="payment-form">
-            <label for="card-name">Nom sur la carte</label>
-            <input type="text" id="card-name" name="card-name" placeholder="Ex : Jean Dupont" required>
+        <form action="confirmation.html" method="POST">
+            <!-- Informations de la carte de crédit -->
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Entrez le numéro de votre carte" required>
+            </div>
 
-            <label for="card-number">Numéro de carte</label>
-            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9101 1121" required>
+            <div class="credit-card-info">
+                <div class="card-info">
+                    <label for="expiry-month">Mois d'expiration</label>
+                    <select id="expiry-month" name="expiry-month" required>
+                        <option value="" disabled selected>Mois</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
 
-            <label for="expiry-date">Date d'expiration</label>
-            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+                <div class="card-info">
+                    <label for="expiry-year">Année d'expiration</label>
+                    <select id="expiry-year" name="expiry-year" required>
+                        <option value="" disabled selected>Année</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                    </select>
+                </div>
+            </div>
 
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Entrez le CVV" required>
+            </div>
 
-            <button type="submit">Payer</button>
+            <!-- Informations de facturation -->
+            <div class="form-group">
+                <label for="billing-name">Nom sur la carte</label>
+                <input type="text" id="billing-name" name="billing-name" placeholder="Nom sur la carte" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Payer maintenant</button>
+            </div>
         </form>
+
+        <div class="payment-icons">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-discover"></i>
+        </div>
     </div>
 
 </body>
