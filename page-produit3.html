@@ -483,29 +483,41 @@
             </div>
         </div>
 
-        <!-- Formulaire -->
-        <div class="form-container">
-            <h2>Informations de Livraison</h2>
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" required>
-
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" required>
-
-            <label for="adresse">Adresse :</label>
-            <input type="text" id="adresse" name="adresse" required>
-
-            <label for="code-postal">Code Postal :</label>
-            <input type="text" id="code-postal" name="code-postal" required pattern="\d{5}" title="Code postal invalide">
-
-            <label for="telephone">Numéro de Téléphone :</label>
-            <input type="tel" id="telephone" name="telephone" required pattern="\d{10}" title="Numéro de téléphone invalide">
-
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-
-            <button type="submit">Confirmer la Commande</button>
+         <!-- Formulaire -->
+        <div class="container">
+    <h2>Remplissez vos informations</h2>
+    <form action="page-livraison3.html" method="GET">
+        <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prénom">
         </div>
+        <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom">
+        </div>
+        <div class="form-group">
+            <label for="rue">Rue *</label>
+            <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
+        </div>
+        <div class="form-group">
+            <label for="numero">N°</label>
+            <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
+        </div>
+        <div class="form-group">
+            <label for="code_postal">Code postal *</label>
+            <input type="text" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville *</label>
+            <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Confirmer La Commande">
+        </div>
+    </form>
+</div>
+        </form>
+    </div>
 
         <!-- FAQ -->
         <div class="faq">
