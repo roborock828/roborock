@@ -29,6 +29,7 @@
             font-size: 24px;
         }
 
+        /* Section du produit */
         .product-info {
             text-align: center;
             margin-bottom: 30px;
@@ -49,6 +50,13 @@
             color: #c70000;
             font-weight: bold;
             margin-top: 10px;
+        }
+
+        /* Séparateur entre le produit et les informations de paiement */
+        hr {
+            border: 0;
+            border-top: 2px solid #c70000;
+            margin: 30px 0;
         }
 
         .form-group {
@@ -105,6 +113,7 @@
 <body>
 
     <div class="container">
+        <!-- Informations sur le produit -->
         <div class="product-info">
             <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV - 55NANO766">
             <p><strong>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</strong></p>
@@ -117,6 +126,10 @@
             <p class="price">Prix : 399.99€</p>
         </div>
 
+        <!-- Séparateur -->
+        <hr>
+
+        <!-- Informations de paiement -->
         <h2>Informations de Paiement</h2>
 
         <form action="confirmation.html" method="POST" id="payment-form">
