@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Paiement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #f4f4f9;
         }
         .container {
-            max-width: 800px;
-            margin: 20px auto;
+            max-width: 900px;
+            margin: 40px auto;
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
         }
         .progress-bar {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
         }
         .progress-bar .step {
             text-align: center;
@@ -30,20 +32,17 @@
         }
         .progress-bar .step span {
             display: inline-block;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
             border-radius: 50%;
             background: #6c63ff;
             color: #fff;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            transition: background 0.3s ease;
         }
         .progress-bar .step.active span {
-            background: #4caf50;
-        }
-        .progress-bar .step p {
-            margin: 0;
-            font-size: 14px;
+            background: #28a745;
         }
         .payment-form {
             margin-bottom: 20px;
@@ -51,54 +50,81 @@
         .payment-form label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 600;
+            color: #333;
         }
         .payment-form input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .payment-form input:focus {
+            outline: none;
+            border-color: #6c63ff;
         }
         .order-summary {
             margin-bottom: 20px;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+            border-top: 1px solid #f1f1f1;
+            padding-top: 20px;
         }
         .order-summary img {
-            width: 100px;
+            width: 120px;
             height: auto;
-            margin-right: 15px;
+            margin-right: 20px;
             border-radius: 8px;
         }
         .order-summary .details {
             display: flex;
             align-items: center;
         }
-        .order-summary .details div {
-            margin-left: 10px;
-        }
         .order-summary .details .price {
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 600;
             color: #333;
         }
         .footer {
             text-align: center;
-            padding: 15px 0;
+            padding: 20px 0;
             background: #6c63ff;
-            color: #fff;
-            border-radius: 0 0 8px 8px;
+            color: white;
+            border-radius: 0 0 12px 12px;
         }
         .footer a {
-            color: #fff;
-            text-decoration: underline;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .payment-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        .payment-button:hover {
+            background-color: #218838;
+        }
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .progress-bar .step span {
+                width: 35px;
+                height: 35px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Barre de progression -->
         <div class="progress-bar">
             <div class="step active">
                 <span>1</span>
@@ -114,11 +140,10 @@
             </div>
         </div>
 
-        <!-- Résumé de la commande -->
         <div class="order-summary">
             <h3>Résumé de la commande</h3>
             <div class="details">
-                <img src="https://via.placeholder.com/100" alt="Produit">
+                <img src="https://via.placeholder.com/120" alt="Produit">
                 <div>
                     <p>Nom du produit</p>
                     <p class="price">50,00 MAD</p>
@@ -126,7 +151,6 @@
             </div>
         </div>
 
-        <!-- Formulaire de paiement -->
         <form class="payment-form">
             <h3>Informations de paiement</h3>
             <label for="card-number">Numéro de carte bancaire</label>
@@ -138,10 +162,9 @@
             <label for="cvv">Code CVV</label>
             <input type="text" id="cvv" placeholder="123" required>
 
-            <button type="submit" style="padding: 10px 20px; background: #4caf50; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Payer</button>
+            <button type="submit" class="payment-button">Payer</button>
         </form>
 
-        <!-- Footer -->
         <div class="footer">
             <p>&copy; 2025 Votre Boutique. <a href="#">Conditions d'utilisation</a> | <a href="#">Confidentialité</a></p>
         </div>
