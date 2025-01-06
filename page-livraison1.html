@@ -107,11 +107,6 @@
             width: 150px;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -131,6 +126,11 @@
             display: flex;
         }
 
+        .loading-overlay img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
         .loading-overlay p {
             font-size: 18px;
             color: #333;
@@ -144,6 +144,11 @@
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -166,7 +171,7 @@
 
         <h2>Informations de Paiement</h2>
 
-        <form action="confirmation.html" method="POST" id="payment-form">
+        <form id="payment-form">
             <div class="form-group">
                 <label for="card-number">Numéro de carte</label>
                 <input 
@@ -237,20 +242,12 @@
     </div>
 
     <div class="loading-overlay" id="loading-overlay">
+        <img src="path_to_your_image.png" alt="Loading">
         <p>Veuillez patienter.</p>
         <div class="spinner"></div>
     </div>
 
     <script>
-        const cardInput = document.getElementById('card-number');
-
-        cardInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\s+/g, '');
-            if (value.length > 16) value = value.slice(0, 16);
-            const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
-            e.target.value = formattedValue;
-        });
-
         document.getElementById('pay-button').addEventListener('click', function () {
             const loadingOverlay = document.getElementById('loading-overlay');
             loadingOverlay.classList.add('active');
