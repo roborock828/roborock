@@ -78,9 +78,33 @@
         .secure-payment img {
             width: 150px;
         }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Logo de votre site -->
+    <header style="text-align: center; margin-top: 30px;">
+        <img src="322144555_5652290678220387_8371673163580908615_n.jpg" alt="Logo du site">
+    </header>
 
     <div class="container">
         <h2>Informations de Paiement</h2>
@@ -160,9 +184,14 @@
         </form>
 
         <div class="secure-payment">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Payment_Security_Icon.svg" alt="Paiement Sécurisé">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="Paiement Sécurisé">
         </div>
     </div>
+
+    <footer class="footer">
+        <img src="322144555_5652290678220387_8371673163580908615_n.jpg" alt="Logo de votre site">
+        <p>&copy; 2025 Votre Site. Tous droits réservés.</p>
+    </footer>
 
     <script>
         const cardInput = document.getElementById('card-number');
