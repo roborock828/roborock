@@ -126,18 +126,15 @@
             background-color: #a50000;
         }
 
-        /* Icônes de paiement */
-        .payment-icons {
+        .secure-payment {
             text-align: center;
             margin-top: 20px;
         }
 
-        .payment-icons img {
-            width: 50px;
-            margin: 0 10px;
+        .secure-payment img {
+            width: 150px;
         }
 
-        /* Adaptabilité pour les petits écrans */
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -180,7 +177,7 @@
         <form action="confirmation.html" method="POST">
             <div class="form-group">
                 <label for="card-number">Numéro de carte</label>
-                <input type="text" id="card-number" name="card-number" placeholder="Entrez votre numéro de carte" required>
+                <input type="text" id="card-number" name="card-number" placeholder="xxxx xxxx xxxx xxxx" pattern="[0-9 ]{19}" maxlength="19" inputmode="numeric" required>
             </div>
 
             <div class="form-group">
@@ -207,13 +204,24 @@
                         <option value="2026">2026</option>
                         <option value="2027">2027</option>
                         <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                        <option value="2036">2036</option>
+                        <option value="2037">2037</option>
+                        <option value="2038">2038</option>
+                        <option value="2039">2039</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="Entrez le CVV" required>
+                <input type="text" id="cvv" name="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" inputmode="numeric" required>
             </div>
 
             <div class="form-group">
@@ -226,12 +234,8 @@
             </div>
         </form>
 
-        <!-- Icônes des cartes bancaires -->
-        <div class="payment-icons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_2021.svg" alt="Visa">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="MasterCard">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg" alt="American Express">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Discover_Card_logo.svg" alt="Discover">
+        <div class="secure-payment">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Payment_Security_Icon.svg" alt="Paiement Sécurisé">
         </div>
     </div>
 
