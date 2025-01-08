@@ -389,21 +389,99 @@
         </ul>
     </div>
 
-    <!-- Barre de progression -->
-<div class="progress-bar">
-    <div class="step active">
-        <span>1</span>
-        <p>Produit</p>
+    <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Produit - LG TV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .product-info {
+            text-align: center;
+        }
+        .product-info img {
+            width: 80%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .product-info h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .product-info p {
+            color: #555;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+        .price {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: red;
+        }
+        .old-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Information du produit -->
+        <div class="product-info">
+            <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="LG TV - 55NANO766">
+            <h3>LG TV - 55NANO766 - Acier foncé - 55'' (139 cm) - LED NanoCell 4K</h3>
+            <p>Taille de l'écran : 55 Pouces</p>
+            <p>Marque : LG</p>
+            <p>Technologie d'affichage : LED</p>
+            <p>Résolution : 4K</p>
+            <p>Fréquence de rafraîchissement : 50 Hz</p>
+            <p>Technologie de connectivité : USB, HDMI</p>
+            <p>Note : 4.7 ★★★★★ (5010 avis)</p>
+            <p>
+                <span class="old-price">645.99€</span>
+                <span class="price">399.99€</span>
+            </p>
+        </div>
     </div>
-    <div class="step active">
-        <span>2</span>
-        <p>Informations</p>
-    </div>
-    <div class="step">
-        <span>3</span>
-        <p>Confirmation</p>
-    </div>
-</div>
+</body>
+</html>
+
+
+        <!-- Barre de progression -->
+        <div class="progress-bar">
+            <div class="step active">
+                <span>1</span>
+                <p>Produit</p>
+            </div>
+            <div class="step active">
+                <span>2</span>
+                <p>Informations</p>
+            </div>
+            <div class="step">
+                <span>3</span>
+                <p>Confirmation</p>
+            </div>
+        </div>
 
 <!-- Formulaire -->
 <div class="container">
@@ -511,3 +589,36 @@
 
 </body>
 </html>
+
+<!-- Footer -->
+<footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <!-- Colonne 1 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">À propos</h4>
+            <p style="color: #bdc3c7;">Roborock France vous propose les meilleures solutions pour un nettoyage efficace et intelligent.</p>
+        </div>
+        <!-- Colonne 2 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Liens utiles</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Politique de confidentialité</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Conditions d'utilisation</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Assistance</a></li>
+            </ul>
+        </div>
+        <!-- Colonne 3 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Suivez-nous</h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://facebook.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <p>&copy; 2025 Roborock France. Tous droits réservés.</p>
+    </div>
+</footer>
