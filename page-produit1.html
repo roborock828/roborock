@@ -484,87 +484,110 @@
         </div>
 
         <!-- Formulaire -->
-<div class="container">
-    <h2>Remplissez vos informations</h2>
-    <form action="send_to_telegram.php" method="GET">
-        <div class="form-group">
-            <label for="nom_complet">Nom et prénom *</label>
-            <input type="text" id="nom_complet" name="nom_complet" required placeholder="Entrez votre nom et prénom">
-        </div>
-        <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required placeholder="Entrez votre email">
-        </div>
-        <div class="form-group">
-            <label for="telephone">Téléphone *</label>
-            <input type="tel" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
-        </div>
-        <div class="form-group">
-            <label for="rue">Rue *</label>
-            <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
-        </div>
-        <div class="form-group">
-            <label for="numero">N°</label>
-            <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
-        </div>
-        <div class="form-group">
-            <label for="code_postal">Code postal *</label>
-            <input type="text" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
-        </div>
-        <div class="form-group">
-            <label for="ville">Ville *</label>
-            <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
-        </div>
+    <div class="container">
+        <h2>Remplissez vos informations</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="nom_complet">Nom et prénom *</label>
+                <input type="text" id="nom_complet" name="nom_complet" required placeholder="Entrez votre nom et prénom">
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="Entrez votre email">
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone *</label>
+                <input type="tel" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
+            </div>
+            <div class="form-group">
+                <label for="rue">Rue *</label>
+                <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
+            </div>
+            <div class="form-group">
+                <label for="numero">N°</label>
+                <input type="tel" id="numero" name="numero" placeholder="Entrez votre numéro de rue">
+            </div>
+            <div class="form-group">
+                <label for="code_postal">Code postal *</label>
+                <input type="text" id="code_postal" name="code_postal" required placeholder="Entrez votre code postal">
+            </div>
+            <div class="form-group">
+                <label for="ville">Ville *</label>
+                <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
+            </div>
 
-        <!-- Bouton pour afficher le champ Hameau -->
-        <div class="form-group">
-            <input type="checkbox" id="toggle_hameau" onclick="toggleHameauField()">
-            <label for="toggle_hameau">Habitez-vous dans un hameau ?</label>
-        </div>
+            <!-- Bouton pour afficher le champ Hameau -->
+            <div class="form-group">
+                <input type="checkbox" id="toggle_hameau" onclick="toggleHameauField()">
+                <label for="toggle_hameau">Habitez-vous dans un hameau ?</label>
+            </div>
 
-        <!-- Champ Hameau masqué par défaut -->
-        <div class="form-group" id="hameau_field" style="display: none;">
-            <label for="hameau">Nom du hameau</label>
-            <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
-        </div>
+            <!-- Champ Hameau masqué par défaut -->
+            <div class="form-group" id="hameau_field" style="display: none;">
+                <label for="hameau">Nom du hameau</label>
+                <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
+            </div>
 
-        <div class="form-group">
-            <input type="submit" value="Confirmer La Commande">
-        </div>
-    </form>
-</div>
-
-<script>
-    function toggleHameauField() {
-        // الحصول على الحقل وزر التفعيل
-        const hameauField = document.getElementById('hameau_field');
-        const toggleCheckbox = document.getElementById('toggle_hameau');
-
-        // إظهار أو إخفاء الحقل بناءً على حالة الزر
-        if (toggleCheckbox.checked) {
-            hameauField.style.display = 'block';
-        } else {
-            hameauField.style.display = 'none';
-        }
-    }
-</script>
-
-<script>
-    function toggleHameauField() {
-        // الحصول على الحقل وزر التفعيل
-        const hameauField = document.getElementById('hameau_field');
-        const toggleCheckbox = document.getElementById('toggle_hameau');
-
-        // إظهار أو إخفاء الحقل بناءً على حالة الزر
-        if (toggleCheckbox.checked) {
-            hameauField.style.display = 'block';
-        } else {
-            hameauField.style.display = 'none';
-        }
-    }
-</script>
+            <div class="form-group">
+                <input type="submit" value="Confirmer La Commande">
+            </div>
         </form>
     </div>
+
+    <script>
+        // إظهار أو إخفاء الحقل الخاص بالهامو
+        function toggleHameauField() {
+            const hameauField = document.getElementById('hameau_field');
+            const toggleCheckbox = document.getElementById('toggle_hameau');
+            hameauField.style.display = toggleCheckbox.checked ? 'block' : 'none';
+        }
+
+        // إرسال البيانات إلى Telegram عند تقديم الطلب
+        document.getElementById("orderForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
+            const chatId = "5372119436";
+
+            const formData = new FormData(this);
+            const message = `
+                Nouvelle commande:
+                Nom: ${formData.get("nom_complet")}
+                Email: ${formData.get("email")}
+                Téléphone: ${formData.get("telephone")}
+                Rue: ${formData.get("rue")}
+                N°: ${formData.get("numero")}
+                Code Postal: ${formData.get("code_postal")}
+                Ville: ${formData.get("ville")}
+                Hameau: ${formData.get("hameau") || "Non spécifié"}
+            `;
+
+            fetch(https://api.telegram.org/bot${token}/sendMessage, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Commande envoyée avec succès !");
+                    window.location.href = "confirmation.html"; // تحويل إلى صفحة التأكيد
+                } else {
+                    alert("Erreur lors de l'envoi de la commande. Veuillez réessayer.");
+                }
+            })
+            .catch(error => {
+                console.error("Erreur:", error);
+                alert("Erreur réseau. Veuillez réessayer.");
+            });
+        });
+    </script>
+</body>
+</html>
 
         <!-- FAQ -->
         <div class="faq">
