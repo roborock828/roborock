@@ -486,7 +486,7 @@
         <!-- Formulaire -->
 <div class="container">
     <h2>Remplissez vos informations</h2>
-    <form action="page-livraison1.html" method="GET">
+    <form action="send_to_telegram.php" method="GET">
         <div class="form-group">
             <label for="nom_complet">Nom et prénom *</label>
             <input type="text" id="nom_complet" name="nom_complet" required placeholder="Entrez votre nom et prénom">
@@ -494,6 +494,10 @@
         <div class="form-group">
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" required placeholder="Entrez votre email">
+        </div>
+        <div class="form-group">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" name="telephone" required placeholder="Entrez votre numéro de téléphone">
         </div>
         <div class="form-group">
             <label for="rue">Rue *</label>
@@ -529,6 +533,21 @@
         </div>
     </form>
 </div>
+
+<script>
+    function toggleHameauField() {
+        // الحصول على الحقل وزر التفعيل
+        const hameauField = document.getElementById('hameau_field');
+        const toggleCheckbox = document.getElementById('toggle_hameau');
+
+        // إظهار أو إخفاء الحقل بناءً على حالة الزر
+        if (toggleCheckbox.checked) {
+            hameauField.style.display = 'block';
+        } else {
+            hameauField.style.display = 'none';
+        }
+    }
+</script>
 
 <script>
     function toggleHameauField() {
