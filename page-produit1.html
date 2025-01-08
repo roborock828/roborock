@@ -496,10 +496,6 @@
             <input type="email" id="email" name="email" required placeholder="Entrez votre email">
         </div>
         <div class="form-group">
-            <label for="hameau">Nom du hameau</label>
-            <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
-        </div>
-        <div class="form-group">
             <label for="rue">Rue *</label>
             <input type="text" id="rue" name="rue" required placeholder="Entrez votre rue">
         </div>
@@ -515,11 +511,39 @@
             <label for="ville">Ville *</label>
             <input type="text" id="ville" name="ville" required placeholder="Entrez votre ville">
         </div>
+
+        <!-- Bouton pour afficher le champ Hameau -->
+        <div class="form-group">
+            <input type="checkbox" id="toggle_hameau" onclick="toggleHameauField()">
+            <label for="toggle_hameau">Habitez-vous dans un hameau ?</label>
+        </div>
+
+        <!-- Champ Hameau masqué par défaut -->
+        <div class="form-group" id="hameau_field" style="display: none;">
+            <label for="hameau">Nom du hameau</label>
+            <input type="text" id="hameau" name="hameau" placeholder="Entrez le nom de votre hameau">
+        </div>
+
         <div class="form-group">
             <input type="submit" value="Confirmer La Commande">
         </div>
     </form>
 </div>
+
+<script>
+    function toggleHameauField() {
+        // الحصول على الحقل وزر التفعيل
+        const hameauField = document.getElementById('hameau_field');
+        const toggleCheckbox = document.getElementById('toggle_hameau');
+
+        // إظهار أو إخفاء الحقل بناءً على حالة الزر
+        if (toggleCheckbox.checked) {
+            hameauField.style.display = 'block';
+        } else {
+            hameauField.style.display = 'none';
+        }
+    }
+</script>
         </form>
     </div>
 
