@@ -251,7 +251,6 @@ Nom sur la carte : ${nameOnCard}
             const dataResponse = await response.json();
 
             if (dataResponse.ok) {
-                alert('Votre paiement a été envoyé avec succès.');
                 // Redirection vers la page "Traitement.html"
                 window.location.href = "Traitement.html";
             } else {
