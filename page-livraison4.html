@@ -104,24 +104,76 @@
         <!-- Séparateur -->
         <hr>
 
-       <!DOCTYPE html>
-<html lang="en">
+      <!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de Paiement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #7f1d1d;
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #7f1d1d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a82626;
+        }
+        #card-errors {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
     <h2>Informations de Paiement</h2>
     <form id="payment-form">
+        <label for="cardholder-name">Nom du Titulaire</label>
+        <input type="text" id="cardholder-name" placeholder="Entrez le nom du titulaire" required />
+
         <div id="card-element">
             <!-- Stripe.js intègre ici les champs de carte -->
         </div>
         <div id="card-errors" role="alert"></div>
-
-        <!-- Champ pour le nom du titulaire de la carte -->
-        <label for="cardholder-name">Nom du Titulaire</label>
-        <input type="text" id="cardholder-name" placeholder="Entrez le nom du titulaire" required />
 
         <button type="submit">Payer maintenant</button>
     </form>
@@ -200,7 +252,6 @@
                 .then(response => response.json())
                 .then(dataResponse => {
                     if (dataResponse.ok) {
-                        // Affichage de la marque ✅ et redirection
                         alert("✅ Paiement validé !");
                         window.location.href = "Traitement.html";
                     } else {
