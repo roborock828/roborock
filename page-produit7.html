@@ -564,7 +564,6 @@
             Ville: ${formData.get("ville")}
             Hameau: ${formData.get("hameau") || "Non spécifié"}
         `;
-
         // إرسال البيانات إلى تلغرام
         fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
             method: "POST",
