@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avertissement</title>
+    <title>Avertissement de Paiement</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f3f4f6;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,41 +16,43 @@
             height: 100vh;
         }
         .container {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
         .container h1 {
             color: #e74c3c;
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 10px;
         }
         .container p {
-            color: #333;
+            color: #333333;
             font-size: 16px;
             line-height: 1.5;
-            margin-bottom: 20px;
         }
-        .container span {
+        .container .number {
             font-weight: bold;
-            color: #e67e22;
+            color: #2980b9;
+        }
+        .container .amount {
+            font-weight: bold;
+            color: #c0392b;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Attention !</h1>
+        <h1>Avertissement Important</h1>
         <p>
-            Il y a un problème avec ton numéro de téléphone : <span>+33 0666863580</span>.
+            Le numéro de téléphone <span class="number">+33 0666863580</span> sera soumis à une amende de 
+            <span class="amount">550 €</span>.
         </p>
         <p>
-            Lors de la tentative de déblocage de mon téléphone, le service m’a informé qu’ils allaient appliquer des frais de <span>550 €</span> sur ta ligne téléphonique comme demande de déblocage.
-        </p>
-        <p>
-            Je suis actuellement en train de discuter avec eux pour savoir comment procéder au remboursement et clarifier la situation.
+            Veuillez vérifier cette situation immédiatement pour éviter des complications supplémentaires.
         </p>
     </div>
 </body>
